@@ -33,6 +33,10 @@
 
 #--- END OF EXAMPLES ---
 
+# James Le Cuirot <chewi@gentoo.org> (2024-04-05)
+# Dead upstream and broken beyond repair. Removal on 2024-05-05. Bug #928591.
+games-board/xmille
+
 # Michał Górny <mgorny@gentoo.org> (2024-03-30)
 # NIH package that was added for dev-python/setuptools but is no longer
 # used there.
@@ -682,7 +686,7 @@ sci-libs/mpir
 ~dev-db/futuresql-0.1.1
 ~dev-libs/appstream-1.0.2
 ~dev-libs/kdiagram-3.0.1
-~dev-libs/kirigami-addons-1.0.1
+~dev-libs/kirigami-addons-1.1.0
 ~dev-libs/ktextaddons-1.5.4
 ~dev-libs/kweathercore-0.8.0
 ~games-puzzle/skladnik-0.5.2
@@ -868,17 +872,6 @@ net-misc/openr2
 # Lots of package breakage as usual for new versions. Masked until most/all
 # reverse dependencies are fixed. Tracker bug is bug #906077.
 =dev-libs/libfmt-10*
-
-# Sam James <sam@gentoo.org> (2023-04-13)
-# Leads to broken terminal output in e.g. vim and openrc and other applications
-# like joe crashing.
-# Bugs:
-# - reported at bottom of bug #904247 and bug #904263
-# - app-misc/tmux: https://github.com/tmux/tmux/issues/3531
-# - sys-apps/openrc: https://github.com/OpenRC/openrc/issues/619
-=sys-libs/ncurses-6.4_p20230424
-=sys-libs/ncurses-6.4_p20230506
-=sys-libs/ncurses-6.4_p20230527
 
 # Ionen Wolkens <ionen@gentoo.org> (2023-03-30)
 # NVIDIA dropped support for the 390.xx branch in December 2022[1].
