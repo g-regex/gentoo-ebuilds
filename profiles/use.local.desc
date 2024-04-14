@@ -1100,7 +1100,6 @@ app-portage/conf-update:colordiff - Use colors when displaying diffs (app-misc/c
 app-portage/eix:debug - Build with upstream's CXXFLAGS/LDFLAGS for debugging support; not recommended for normal use.
 app-portage/eix:doc - Create description of the eix cache file additionally in html format
 app-portage/eix:sqlite - Compile in support for portage's sqlite backend; to actually use it you need additional configuration of portage and eix
-app-portage/g-sorcery:bson - Support BSON file format for package DB
 app-portage/gemato:gpg - Install dependencies needed for OpenPGP signature verification support
 app-portage/gemato:pretty-log - Pull dev-python/rich to enable pretty logs
 app-portage/gemato:tools - Install additional utilities (benchmarks, hash testing tools, fast Manifest generators) to /usr/share/gemato.
@@ -2066,6 +2065,7 @@ dev-libs/libisoburn:frontend-optional - Use dev-tcltk/bwidget which is not stric
 dev-libs/libisoburn:launch-frontend - Enable the tcl gui for xorriso
 dev-libs/libisoburn:launch-frontend-setuid - Enable the tcl gui for xorriso under setuid
 dev-libs/libisofs:verbose-debug - Enable verbose debug messages
+dev-libs/libjcat:ed25519 - Enable ED25519 verification support via dev-libs/nettle and net-libs/gnutls
 dev-libs/libjcat:gpg - Enable GPG verification support via app-crypt/gpgme
 dev-libs/libjcat:pkcs7 - Enable PKCS7 verification support via net-libs/gnutls
 dev-libs/libjwt:openssl - Use openssl libs for crypto functions
@@ -3166,7 +3166,6 @@ games-engines/odamex:portmidi - Enable PortMidi support
 games-engines/odamex:server - Build server target
 games-engines/openmw:devtools - Install development tools like bsatool, esmtool and opencs.
 games-engines/openmw:osg-fork - Use OpenSceneGraph forked by OpenMW instead of upstream OSG.
-games-engines/renpy:development - Install IDE for game developers and an empty game template
 games-engines/scummvm:fluidsynth - compile with support for fluidsynth
 games-engines/scummvm:fribidi - Support for right-to-left languages via dev-libs/fribidi
 games-engines/scummvm:mpeg2 - enable mpeg2 codec for cutscenes
@@ -3341,6 +3340,7 @@ games-strategy/wargus:bne - Support extracting data from the Battle.net Edition
 games-strategy/warzone2100:discord - Enable Discord presence/join integration
 games-strategy/wesnoth:server - Enable compilation of server
 games-util/gslist:web - Enable the web interface
+games-util/heroic-bin:gamescope - Run Heroic Launcher inside gamescope
 games-util/lgogdownloader:gui - Enable GUI login support for passing reCAPTCHA
 games-util/slade:fluidsynth - Enable MIDI software synthesis using media-sound/fluidsynth
 games-util/wit:fuse - Enable image mount support via fuse
@@ -3451,6 +3451,9 @@ gui-libs/gtk:cloudproviders - Enable GtkPlacesSidebar to access cloud services
 gui-libs/gtk:colord - Use x11-misc/colord for color management in printing
 gui-libs/gtk:sysprof - Enable profiling data capture support using dev-util/sysprof-capture
 gui-libs/gtksourceview:sysprof - Enable profiling data capture support using dev-util/sysprof-capture
+gui-libs/libdecor:dbus - Enable dbus to query current cursor theme
+gui-libs/libdecor:examples - Build and install examples
+gui-libs/libdecor:gtk - Build GTK plugin
 gui-libs/libhandy:glade - Install module and catalog for dev-util/glade
 gui-libs/neatvnc:examples - Build and install examples
 gui-libs/neatvnc:gbm - Enable support for the Generic Buffer Manager (gbm)
@@ -3970,6 +3973,7 @@ mate-extra/caja-extensions:wallpaper - Add an extension to support setting an im
 mate-extra/mate-polkit:accountsservice - Support extraction of data from AccountsService
 mate-extra/mate-power-manager:applet - Enable building of the MATE applet.
 mate-extra/mate-system-monitor:wnck - Enable experimental support using x11-libs/libwnck.
+mate-extra/mate-tweak:dropdown - Support the x11-terms/tilda dropdown terminal emulator
 mate-extra/mate-utils:applet - Enable the mate dictionary applet
 media-fonts/corefonts:tahoma - Also install the Tahoma font. Due to the lack of a free bold variant, this may render badly. See bug 184790.
 media-fonts/culmus:ancient - Install ancient semitic scripts
@@ -4272,17 +4276,11 @@ media-libs/imlib2:apidoc - Provide doxygen generated API docs
 media-libs/imlib2:bzip2 - Bzip2 loader support
 media-libs/imlib2:eps - Eps image loader support
 media-libs/imlib2:filters - Build filter functions (blur, sharpen, etc)
-media-libs/imlib2:gif - Gif image loader support
 media-libs/imlib2:heif - Heif and Avif image loader support
-media-libs/imlib2:jpeg - Jpeg image loader support
-media-libs/imlib2:jpegxl - Jxl image loader support
 media-libs/imlib2:mp3 - ID3 loader support
 media-libs/imlib2:packing - Enable structure packing. This will reduce memory footprint at the cost of unaligned memory access
-media-libs/imlib2:png - PNG image loader support
 media-libs/imlib2:shm - Use MIT shared memory support for X image transfer
 media-libs/imlib2:text - Build text (TrueType font) functions
-media-libs/imlib2:tiff - TIFF image loader support
-media-libs/imlib2:webp - WEBP image loader support
 media-libs/imlib2:zlib - Zlib loader support
 media-libs/intel-mediasdk:tools - Build analyse and inspect tools
 media-libs/jasper:heif - Enable experimental support for HEIF/HEIC, unsupported by upstream
@@ -4921,6 +4919,7 @@ media-sound/vimpc:boost - Use boost instead of C++11 libraries
 media-sound/vorbis-tools:kate - Adds support for Ogg Kate subtitles via libkate.
 media-sound/vorbis-tools:ogg123 - Build ogg123 player, needs libao and curl
 media-sound/wildmidi:player - Install the wildmidi player
+media-sound/wildmidi:sndio - Enable support for the media-sound/sndio backend
 media-sound/xmms2:airplay - Support for airplay format
 media-sound/xmms2:fluidsynth - Enable fluidsynth support (MIDI)
 media-sound/xmms2:gme - Support for various game audio formats using media-libs/game-music-emu
@@ -6394,9 +6393,6 @@ net-misc/curl:sslv3 - Support for the old/insecure SSLv3 protocol
 net-misc/curl:telnet - Enable Telnet protocol support
 net-misc/curl:tftp - Enable TFTP support
 net-misc/curl:websockets - Enable websockets support
-net-misc/dahdi:flash - Support (short) flash on FXS
-net-misc/dahdi:oslec - Enable OSLEC (software) echo canceller (require ECHO in kernel)
-net-misc/dahdi-tools:ppp - Enables PPP/DAHDIRAS support
 net-misc/dhcp:client - Install the dhclient program
 net-misc/dhcp:server - Install the dhcpd and dhcrelay programs
 net-misc/dhcpcd:embedded - Embed the definitions of dhcp options in the dhcpcd executable
@@ -7419,7 +7415,6 @@ sci-libs/mathgl:octave - Add bindings for sci-mathematics/octave
 sci-libs/matio:sparse - Extend formats for sparse matrix (not matlab)
 sci-libs/metis:double-precision - Use double- rather than single-precision floating-point representation
 sci-libs/metis:int64 - Use 64- rather than 32-bit integer representation (needed for > 2^31 vertices)
-sci-libs/mpir:cpudetection - Enables runtime cpudetection (useful for bindist, compatibility on other CPUs)
 sci-libs/mumps:metis - Enable matrix ordering with METIS (sci-libs/metis, sci-libs/parmetis)
 sci-libs/mumps:scotch - Enable matrix ordering with sci-libs/scotch
 sci-libs/netcdf:blosc - Allow using blosc compression via dev-libs/c-blosc
@@ -8301,6 +8296,7 @@ sys-firmware/seabios:binary - Use official upstream pre-built binaries
 sys-firmware/seabios:seavgabios - Include SeaVGABIOS binaries (replacement for vgabios)
 sys-firmware/sgabios:binary - Use pre-built binaries
 sys-firmware/sigrok-firmware-fx2lafw:binary - Use official upstream pre-built binaries
+sys-firmware/sof-firmware:tools - Tools to interact with sof firmwares (upstream expects them to be present, but allow to skip them for systems not able to install needed dependencies)
 sys-firmware/vgabios:binary - Use official upstream pre-built binaries (only default and cirrus images)
 sys-fs/android-file-transfer-linux:fuse - Add FUSE mount helper
 sys-fs/android-file-transfer-linux:zune - Enable support for Microsoft Zune
@@ -9042,7 +9038,6 @@ x11-themes/arc-theme:transparency - Enable transparency
 x11-themes/arc-theme:xfce - Install theme for xfce-base/xfwm4
 x11-themes/comix-xcursors:lefthanded - Install lefthanded version of theme in addition to default one.
 x11-themes/comix-xcursors:opaque - Install non-transparent version of theme in addition to default one.
-x11-themes/fluent-icon-theme:black - Install the black version of symbolic icons (for white color-scheme panels)
 x11-themes/fluent-icon-theme:hardlink - Hardlink duplicate icons to greatly reduce installation size
 x11-themes/fluent-icon-theme:round - Install the round version of symbolic icons
 x11-themes/gentoo-artwork:grub - Install extra sys-boot/grub themes
