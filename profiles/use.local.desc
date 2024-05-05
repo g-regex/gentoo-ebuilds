@@ -48,6 +48,7 @@ app-admin/conky:intel-backlight - Enable support for Intel backlight
 app-admin/conky:iostats - Enable support for per-task I/O statistics
 app-admin/conky:irc - Enable support for displaying everything from an irc channel using net-libs/libircclient
 app-admin/conky:lua-cairo - Enable if you want Lua Cairo bindings
+app-admin/conky:lua-cairo-xlib - Enable support for Cairo and Xlib interoperability for Lua
 app-admin/conky:lua-imlib - Enable if you want Lua Imlib2 bindings
 app-admin/conky:lua-rsvg - Enable if you want Lua RSVG bindings
 app-admin/conky:math - Enable support for glibc's libm math library
@@ -348,6 +349,7 @@ app-containers/skopeo:device-mapper - Compiles with libdevmapper
 app-containers/skopeo:rootless - Compiles with libsubid
 app-containers/snapd:forced-devmode - Automatically disable application confinement if feature detection fails.
 app-crypt/aespipe:cpu_flags_x86_padlock - Use VIA padlock instructions, detected at run time, code still works on non-padlock processors
+app-crypt/badkeys:dkim - Enable dkim scan mode via dev-python/dnspython.
 app-crypt/badkeys:ssh - Enable ssh scan mode via dev-python/paramiko.
 app-crypt/ccid:twinserial - Enable twinserial reader
 app-crypt/codecrypt:cryptopp - Build algorithms that need Crypto++ support dev-libs/crypto++
@@ -508,6 +510,8 @@ app-emacs/emacs-common:games - Support shared score files for games
 app-emacs/emacs-common:gsettings - Install schema file for gsettings (dev-libs/glib)
 app-emacs/emacs-w3m:gzip-el - Compress bundled Emacs Lisp source
 app-emacs/flim:oauth2 - Support OAuth2 authentication (app-emacs/oauth2)
+app-emacs/gap-mode:completion - Install GAP backend for app-emacs/company-mode to "complete anything."
+app-emacs/gap-mode:lint - Support automatically linting GAP code via app-emacs/flycheck and dev-gap/gaplint.
 app-emacs/magit:libgit - Use libgit (app-emacs/libegit2)
 app-emacs/mu-cite:bbdb - Include support for app-emacs/bbdb
 app-emacs/org-mode:odt-schema - Install non-free schema files for OpenDocument Text exporter
@@ -3111,6 +3115,7 @@ games-emulation/gambatte-jg:jgmodule - Build module for The Jolly Good API
 games-emulation/gambatte-jg:shared - Build shared library
 games-emulation/generator:sdlaudio - Enable SDL Audio
 games-emulation/hatari:capsimage - Use dev-libs/spsdeclib to read .IPF, .RAW, and .CTR disk images
+games-emulation/hatari:capstone - Use dev-libs/capstone for disassembly output in the debugger
 games-emulation/hatari:portmidi - Use media-libs/portmidi as an alternative MIDI backend
 games-emulation/higan:gtk - Use GTK3 (Qt5 if disabled) user interface backend
 games-emulation/jgemu:bsnes - Install bsnes for Super Nintendo
@@ -4083,6 +4088,7 @@ media-gfx/darktable:tools - Install tools for generating base curves and noise p
 media-gfx/digikam:addressbook - Enable akonadi contact integration
 media-gfx/digikam:imagemagick - Enable support for additional image formats such as XCF, FITS, HEIC etc.
 media-gfx/digikam:lensfun - Enable support for media-libs/lensfun
+media-gfx/digikam:mediaplayer - Enable integrated video player
 media-gfx/digikam:panorama - Build the panorama plugin which requires media-gfx/hugin
 media-gfx/digikam:semantic-desktop - Enable kde-frameworks/kfilemetadata support
 media-gfx/eog-plugins:map - Enable world map display using media-libs/libchamplain
@@ -6006,6 +6012,7 @@ net-irc/weechat:fset - Enable fast set plugin
 net-irc/weechat:irc - Enable IRC protocol support
 net-irc/weechat:logger - Enable support for logging
 net-irc/weechat:relay - Enable relay plugin (experimental)
+net-irc/weechat:relay-api - Enable json API support for the relay plugin (experimental)
 net-irc/weechat:scripts - Build infrastructure for scripting
 net-irc/weechat:trigger - Enable trigger plugin
 net-irc/weechat:typing - Enable typing plugin
@@ -7745,6 +7752,7 @@ sec-policy/selinux-base:unknown-perms - Default allow unknown classes in kernels
 sec-policy/selinux-base-policy:unconfined - Enable support for the unconfined SELinux policy module
 sys-apps/accountsservice:elogind - Use sys-auth/elogind for session tracking
 sys-apps/accountsservice:systemd - Use sys-apps/systemd for session tracking
+sys-apps/azure-nvme-utils:lun-fallback - Enable fallback LUN calculation via NSID
 sys-apps/bfs:io-uring - Use sys-libs/liburing for faster async I/O
 sys-apps/busybox:make-symlinks - Create all the appropriate symlinks in /bin and /sbin.
 sys-apps/busybox:math - Enable math support in gawk (requires libm)
@@ -8985,7 +8993,6 @@ x11-misc/xmobar:xft - Use Xft to render text. UTF-8 support included.
 x11-misc/xmobar:xpm - Enable usage of xpm for icons.
 x11-misc/xmobar:xrender - Use XRender for alpha background pseudo-transparency.
 x11-misc/xscreensaver:fonts - Install the fonts shipped with XScreenSaver that have clear licensing
-x11-misc/xscreensaver:gdk-pixbuf - Include support for the x11-libs/gdk-pixbuf library in some demos, which will make it possible for them to read GIF, JPEG, and PNG files as well
 x11-misc/xscreensaver:gdm - Use gdmflexiserver from gnome-base/gdm instead of x11-misc/lightdm
 x11-misc/xscreensaver:gles - Emulate OpenGL 1.3 in terms of OpenGL ES 1.x
 x11-misc/xscreensaver:glx - Use GLX to interface OpenGL and X11 instead of EGL
