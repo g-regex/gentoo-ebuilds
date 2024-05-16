@@ -4,7 +4,7 @@
 EAPI=8
 
 MULTILIB_COMPAT=( abi_x86_{32,64} )
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{10..13} )
 inherit autotools flag-o-matic multilib multilib-build prefix
 inherit python-any-r1 readme.gentoo-r1 toolchain-funcs wrapper
 
@@ -44,7 +44,7 @@ WINE_DLOPEN_DEPEND="
 	dev-libs/libgcrypt:=[${MULTILIB_USEDEP}]
 	media-libs/freetype[${MULTILIB_USEDEP}]
 	media-libs/libglvnd[X,${MULTILIB_USEDEP}]
-	media-libs/vulkan-loader[${MULTILIB_USEDEP}]
+	media-libs/vulkan-loader[X,${MULTILIB_USEDEP}]
 	x11-libs/libXcursor[${MULTILIB_USEDEP}]
 	x11-libs/libXfixes[${MULTILIB_USEDEP}]
 	x11-libs/libXi[${MULTILIB_USEDEP}]
@@ -269,6 +269,7 @@ src_configure() {
 	)
 
 	filter-lto # build failure
+	filter-flags -Wl,--gc-sections # runtime issues (bug #931329)
 	use custom-cflags || strip-flags # can break in obscure ways at runtime
 
 	# wine uses linker tricks unlikely to work with non-bfd/lld (bug #867097)

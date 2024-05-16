@@ -33,6 +33,63 @@
 
 #--- END OF EXAMPLES ---
 
+# Andreas Sturmlechner <asturm@gentoo.org> (2024-05-14)
+# Breaks build of revdeps.
+~app-text/poppler-24.05.0
+
+# Arthur Zamarin <arthurzam@gentoo.org> (2024-05-13)
+# EAPI=6, fails to compile, archived upstream, uses deprecated go eclasses.
+# Removal: 2024-06-12.  Bugs #931879, #734186.
+app-emulation/docker-machine-kvm
+
+# Arthur Zamarin <arthurzam@gentoo.org> (2024-05-13)
+# EAPI=6, fails to compile, dead upstream, maintainer-needed.
+# Removal: 2024-06-12.  Bugs #931874, #878771.
+media-gfx/raw-thumbnailer
+
+# Arthur Zamarin <arthurzam@gentoo.org> (2024-05-13)
+# EAPI=6, fails to compile, library with no reverse dependencies.
+# Removal: 2024-06-12.  Bug #931861.
+sci-libs/cifparse-obj
+
+# Arthur Zamarin <arthurzam@gentoo.org> (2024-05-13)
+# EAPI=6, fails to compile, no reverse dependencies.
+# Removal: 2024-06-12.  Bugs #931860, #891895.
+sci-libs/libghemical
+
+# Arthur Zamarin <arthurzam@gentoo.org> (2024-05-11)
+# EAPI=6, uses deprecated go eclass, archived upstream. Update to
+# usage of go-module.eclass isn't simple.
+# Removal: 2024-06-10.  Bugs #931745, #844598.
+app-emulation/docker-machine
+
+# Arthur Zamarin <arthurzam@gentoo.org> (2024-05-11)
+# EAPI=6, library only without any reverse dependencies, uses
+# deprecated go eclasses.
+# Removal: 2024-06-10.  Bug #931725.
+dev-go/fuzzy
+dev-go/go-bindata-assetfs
+dev-go/godebug-pretty
+dev-go/sanitized-anchor-name
+
+# Eli Schwartz <eschwartz93@gmail.com> (2024-05-08)
+# Fails to configure with GCC 14, fails to install with older
+# gcc, unmaintained, upstream website vanished.
+# Bug #731180, #861461, #888577, #889930.
+# Removal on 2024-06-08.
+net-irc/ninja
+
+# Sam James <sam@gentoo.org> (2024-05-06)
+# Long-deprecated upstream, replaced by (unpackaged) Twitter::API.
+# Twitter's API has changed at least once since the last release of Net::Twitter.
+# Removal on 2024-06-05.  Bug #931295.
+dev-perl/Net-Twitter
+
+# Sam James <sam@gentoo.org> (2024-05-06)
+# Incompatible with latest last.fm APIs, hence useless.
+# Removal on 2024-06-05.  Bug #928115.
+media-libs/lastfmlib
+
 # Michał Górny <mgorny@gentoo.org> (2024-05-05)
 # A library last bumped in 2010.  Homepage gone.  No revdeps.
 # Removal on 2024-06-04.  Bug #909527.
@@ -45,22 +102,11 @@ dev-games/poker-eval
 dev-games/hawknl
 
 # Michał Górny <mgorny@gentoo.org> (2024-05-05)
-# Effectively unmaintained.  Unpatched vulnerability reported
-# in February.  The Python counterpart is even more outdated.
-# Removal on 2024-06-04.  Bug #924129.
-dev-python/ovs
-net-misc/openvswitch
-
-# Michał Górny <mgorny@gentoo.org> (2024-05-05)
 # An unmaintained fork of an unmaintained DNS server.  All successive
 # homepages are gone.  Last commit in 2014.  Already carries a lot
 # of patches and hacks.
 # Removal on 2024-06-04.  Bug #928942.
-
 net-dns/mydns
-# Sam James <sam@gentoo.org> (2024-05-05)
-# Fails to build w/ broken dist tarball (bug #931240).
-=app-crypt/tpm2-tss-4.1.0
 
 # Michał Górny <mgorny@gentoo.org> (2024-05-04)
 # A really bad quality package with a never-ending stream of unclear
@@ -275,17 +321,6 @@ dev-go/twofactor
 # Removal on 2024-05-18
 sci-visualization/spectromatic
 
-# Fabian Groffen <grobian@gentoo.org> (2024-04-16)
-# Official latest Python support 3.8, replacement app-metrics/go-carbon
-# is more performant and designed to be a drop-in replacement.
-# Removal on 2024-05-16, bug #929444
-dev-python/carbon
-
-# Fabian Groffen <grobian@gentoo.org> (2024-04-13)
-# Python wrapper around liblmsensors, no reverse dependencies
-# Removal on 2024-05-13, bug #929495
-dev-python/PySensors
-
 # Arthur Zamarin <arthurzam@gentoo.org> (2024-04-12)
 # EAPI6. Fails to compile with go versions in tree. Upstream is archived.
 # Uses deprecated go eclasses. Maintainer needed, no rev deps.
@@ -301,79 +336,6 @@ app-emulation/runv
 =sys-kernel/gentoo-kernel-bin-6.6.26
 =sys-kernel/vanilla-kernel-6.6.26
 =sys-kernel/vanilla-kernel-6.8.5
-
-# Volkmar W. Pogatzki <gentoo@pogatzki.net> (2024-04-08)
-# Obsolete java-vm, bugs #848804 #830248.
-# Removal on 2024-05-08
-dev-java/icedtea-bin
-
-# Volkmar W. Pogatzki <gentoo@pogatzki.net> (2024-04-08)
-# Java libraries without consumers.
-# Removal on 2024-05-08, bugs #853100 #716228.
-dev-java/gin
-dev-java/gwt
-dev-java/validation-api
-
-# Ben Kohler <bkohler@gentoo.org> (2024-04-07)
-# Abandoned upstream long ago in favor of Unifi Protect (running only on an
-# official Unifi appliance.  Likely contains lots of security holes in bundled
-# libs.
-# Removal on 2024-05-07.  Bug #928881
-acct-group/unifi-video
-acct-user/unifi-video
-media-video/unifi-video
-
-# Ben Kohler <bkohler@gentoo.org> (2024-04-07)
-# Long ago forked to and obsoleted by sys-apps/memtest86+.  Upstream has
-# abandoned this for their proprietary UEFI-based one (packaged in gentoo as
-# as sys-apps/memtest86-bin).
-# Removal on 2024-05-07.  Bug #502464, #607494, #628528, #750677, #887003,
-# #912973, #920109
-sys-apps/memtest86
-
-# Andreas Sturmlechner <asturm@gentoo.org> (2024-04-06)
-# Dead upstream for many years, in a state of decay and no revdeps.
-# Removal on 2024-05-06.  Bug #926193, #891791
-net-im/telepathy-connection-managers
-net-libs/sofia-sip
-net-libs/telepathy-accounts-signon
-net-libs/telepathy-farstream
-net-libs/telepathy-qt
-net-voip/telepathy-gabble
-net-voip/telepathy-rakia
-net-voip/telepathy-salut
-
-# Andreas Sturmlechner <asturm@gentoo.org> (2024-04-06)
-# Dead upstream, as is the whole telepathy stack. Some parts depend on
-# dev-qt/qtwebengine:5.
-# Removal on 2024-05-06.  Bug #926679
-kde-apps/ktp-accounts-kcm
-kde-apps/ktp-approver
-kde-apps/ktp-auth-handler
-kde-apps/ktp-common-internals
-kde-apps/ktp-contact-list
-kde-apps/ktp-contact-runner
-kde-apps/ktp-desktop-applets
-kde-apps/ktp-filetransfer-handler
-kde-apps/ktp-kded-module
-kde-apps/ktp-send-file
-kde-apps/ktp-text-ui
-kde-apps/plasma-telepathy-meta
-net-libs/telepathy-logger-qt
-
-# James Le Cuirot <chewi@gentoo.org> (2024-04-05)
-# Dead upstream and broken beyond repair. Removal on 2024-05-05. Bug #928591.
-games-board/xmille
-
-# Michał Górny <mgorny@gentoo.org> (2024-03-30)
-# NIH package that was added for dev-python/setuptools but is no longer
-# used there.
-# Removal on 2024-04-29.  Bug #928270.
-dev-python/nspektr
-
-# James Le Cuirot <chewi@gentoo.org> (2024-03-30)
-# Old, ugly, broken, and requires OSS sound. Removal on 2024-04-30. Bug #928066.
-games-sports/gracer
 
 # Sam James <sam@gentoo.org> (2024-03-28)
 # Newer 5.4.x releases were signed by a potentially compromised upstream maintainer.
@@ -394,25 +356,12 @@ sec-keys/openpgp-keys-jiatan
 ~app-arch/xz-utils-5.6.0
 ~app-arch/xz-utils-5.6.1
 
-# Michał Górny <mgorny@gentoo.org> (2024-03-26)
-# Uses deprecated distutils-r1 API.  Depends on dev-qt/qtwebengine:5.
-# Includes the libraries with no other reverse dependencies.
-# Removal on 2024-04-25.  Bug #909996.
-media-libs/libopenshot
-media-libs/libopenshot-audio
-media-video/openshot
-
-# Michał Górny <mgorny@gentoo.org> (2024-03-26)
-# Issues with OpenSSL 3.  Unmaintained.  Last activity in 2019.
-# Removal on 2024-04-25.  Bug #892031.
-sys-auth/pam_ssh
-
 # Eray Aslan <eras@gentoo.org> (2024-03-10)
 # Mask experimental software
 =mail-mta/postfix-3.10*
 
-# Andreas Sturmlechner <asturm@gentoo.org> (2024-04-16)
-# KDE Plasma 6.0.4, Gear 24.02.2 and Frameworks 6.1.0 mask
+# Andreas Sturmlechner <asturm@gentoo.org> (2024-05-13)
+# KDE Plasma 6.0.4, Gear 24.02.2 and Frameworks 6.2.0 mask
 #
 # Don't do anything unless you're intentionally moving to Plasma 6, which is
 # masked still for a reason. If you get this message just from conflicts where
@@ -430,77 +379,77 @@ sys-auth/pam_ssh
 #   - file a bug after making sure none exists yet for your issue
 # - runtime bugs: https://community.kde.org/Plasma/Plasma_6#How_to_use/test_it
 #   - work with upstream and help test patches using /etc/portage/patches
-~kde-frameworks/frameworkintegration-6.1.0
-~kde-frameworks/attica-6.1.0
-~kde-frameworks/bluez-qt-6.1.0
-~kde-frameworks/breeze-icons-6.1.0
-~kde-frameworks/extra-cmake-modules-6.1.0
-~kde-frameworks/karchive-6.1.0
-~kde-frameworks/kcalendarcore-6.1.0
-~kde-frameworks/kcodecs-6.1.0
-~kde-frameworks/kconfig-6.1.0
-~kde-frameworks/kcoreaddons-6.1.0
-~kde-frameworks/kdbusaddons-6.1.0
-~kde-frameworks/kdnssd-6.1.0
-~kde-frameworks/kguiaddons-6.1.0
-~kde-frameworks/kholidays-6.1.0
-~kde-frameworks/ki18n-6.1.0
-~kde-frameworks/kidletime-6.1.0
-~kde-frameworks/kirigami-6.1.0
-~kde-frameworks/kitemmodels-6.1.0
-~kde-frameworks/kitemviews-6.1.0
-~kde-frameworks/kplotting-6.1.0
-~kde-frameworks/kquickcharts-6.1.0
-~kde-frameworks/ktexttemplate-6.1.0
-~kde-frameworks/kuserfeedback-6.1.0
-~kde-frameworks/kwidgetsaddons-6.1.0
-~kde-frameworks/kwindowsystem-6.1.0
-~kde-frameworks/modemmanager-qt-6.1.0
-~kde-frameworks/networkmanager-qt-6.1.0
-~kde-frameworks/prison-6.1.0
-~kde-frameworks/solid-6.1.1
-~kde-frameworks/sonnet-6.1.0
-~kde-frameworks/syntax-highlighting-6.1.0
-~kde-frameworks/threadweaver-6.1.0
-~kde-frameworks/kauth-6.1.0
-~kde-frameworks/kcolorscheme-6.1.0
-~kde-frameworks/kcompletion-6.1.0
-~kde-frameworks/kcontacts-6.1.0
-~kde-frameworks/kcrash-6.1.0
-~kde-frameworks/kdoctools-6.1.0
-~kde-frameworks/kfilemetadata-6.1.0
-~kde-frameworks/kimageformats-6.1.0
-~kde-frameworks/kjobwidgets-6.1.0
-~kde-frameworks/knotifications-6.1.0
-~kde-frameworks/kpackage-6.1.0
-~kde-frameworks/kpeople-6.1.0
-~kde-frameworks/kpty-6.1.0
-~kde-frameworks/kstatusnotifieritem-6.1.0
-~kde-frameworks/ksvg-6.1.0
-~kde-frameworks/kunitconversion-6.1.0
-~kde-frameworks/syndication-6.1.0
-~kde-frameworks/baloo-6.1.0
-~kde-frameworks/kbookmarks-6.1.0
-~kde-frameworks/kcmutils-6.1.0
-~kde-frameworks/kconfigwidgets-6.1.0
-~kde-frameworks/kdav-6.1.0
-~kde-frameworks/kdeclarative-6.1.0
-~kde-frameworks/kded-6.1.0
-~kde-frameworks/kdesu-6.1.0
-~kde-frameworks/kglobalaccel-6.1.0
-~kde-frameworks/kiconthemes-6.1.0
-~kde-frameworks/kio-6.1.0
-~kde-frameworks/knewstuff-6.1.0
-~kde-frameworks/knotifyconfig-6.1.0
-~kde-frameworks/kparts-6.1.0
-~kde-frameworks/krunner-6.1.0
-~kde-frameworks/kservice-6.1.0
-~kde-frameworks/ktexteditor-6.1.0
-~kde-frameworks/ktextwidgets-6.1.0
-~kde-frameworks/kwallet-6.1.0
-~kde-frameworks/kxmlgui-6.1.0
-~kde-frameworks/purpose-6.1.0
-~kde-frameworks/qqc2-desktop-style-6.1.0
+~kde-frameworks/frameworkintegration-6.2.0
+~kde-frameworks/attica-6.2.0
+~kde-frameworks/bluez-qt-6.2.0
+~kde-frameworks/breeze-icons-6.2.0
+~kde-frameworks/extra-cmake-modules-6.2.0
+~kde-frameworks/karchive-6.2.0
+~kde-frameworks/kcalendarcore-6.2.0
+~kde-frameworks/kcodecs-6.2.0
+~kde-frameworks/kconfig-6.2.0
+~kde-frameworks/kcoreaddons-6.2.0
+~kde-frameworks/kdbusaddons-6.2.0
+~kde-frameworks/kdnssd-6.2.0
+~kde-frameworks/kguiaddons-6.2.0
+~kde-frameworks/kholidays-6.2.0
+~kde-frameworks/ki18n-6.2.0
+~kde-frameworks/kidletime-6.2.0
+~kde-frameworks/kirigami-6.2.1
+~kde-frameworks/kitemmodels-6.2.0
+~kde-frameworks/kitemviews-6.2.0
+~kde-frameworks/kplotting-6.2.0
+~kde-frameworks/kquickcharts-6.2.0
+~kde-frameworks/ktexttemplate-6.2.0
+~kde-frameworks/kuserfeedback-6.2.0
+~kde-frameworks/kwidgetsaddons-6.2.0
+~kde-frameworks/kwindowsystem-6.2.0
+~kde-frameworks/modemmanager-qt-6.2.0
+~kde-frameworks/networkmanager-qt-6.2.0
+~kde-frameworks/prison-6.2.0
+~kde-frameworks/solid-6.2.0
+~kde-frameworks/sonnet-6.2.0
+~kde-frameworks/syntax-highlighting-6.2.0
+~kde-frameworks/threadweaver-6.2.0
+~kde-frameworks/kauth-6.2.0
+~kde-frameworks/kcolorscheme-6.2.0
+~kde-frameworks/kcompletion-6.2.0
+~kde-frameworks/kcontacts-6.2.0
+~kde-frameworks/kcrash-6.2.0
+~kde-frameworks/kdoctools-6.2.0
+~kde-frameworks/kfilemetadata-6.2.0
+~kde-frameworks/kimageformats-6.2.0
+~kde-frameworks/kjobwidgets-6.2.0
+~kde-frameworks/knotifications-6.2.0
+~kde-frameworks/kpackage-6.2.0
+~kde-frameworks/kpty-6.2.0
+~kde-frameworks/kstatusnotifieritem-6.2.0
+~kde-frameworks/ksvg-6.2.0
+~kde-frameworks/kunitconversion-6.2.0
+~kde-frameworks/syndication-6.2.0
+~kde-frameworks/baloo-6.2.0
+~kde-frameworks/kbookmarks-6.2.0
+~kde-frameworks/kcmutils-6.2.0
+~kde-frameworks/kconfigwidgets-6.2.0
+~kde-frameworks/kdav-6.2.0
+~kde-frameworks/kdeclarative-6.2.0
+~kde-frameworks/kded-6.2.0
+~kde-frameworks/kdesu-6.2.0
+~kde-frameworks/kglobalaccel-6.2.0
+~kde-frameworks/kiconthemes-6.2.0
+~kde-frameworks/kio-6.2.0
+~kde-frameworks/knewstuff-6.2.0
+~kde-frameworks/knotifyconfig-6.2.0
+~kde-frameworks/kparts-6.2.0
+~kde-frameworks/kpeople-6.2.0
+~kde-frameworks/krunner-6.2.0
+~kde-frameworks/kservice-6.2.0
+~kde-frameworks/ktexteditor-6.2.0
+~kde-frameworks/ktextwidgets-6.2.0
+~kde-frameworks/kwallet-6.2.0
+~kde-frameworks/kxmlgui-6.2.0
+~kde-frameworks/purpose-6.2.0
+~kde-frameworks/qqc2-desktop-style-6.2.0
 ~kde-plasma/bluedevil-6.0.4
 ~kde-plasma/breeze-6.0.4
 ~kde-plasma/breeze-grub-6.0.4
@@ -781,14 +730,16 @@ sys-auth/pam_ssh
 ~kde-misc/plasma-pass-1.2.2
 ~app-editors/kile-2.9.94
 ~dev-db/futuresql-0.1.1
-~dev-libs/appstream-1.0.2
+~dev-libs/appstream-1.0.3
 ~dev-libs/kdiagram-3.0.1
-~dev-libs/kirigami-addons-1.1.0
+~dev-libs/kirigami-addons-1.2.1
 ~dev-libs/ktextaddons-1.5.4
 ~dev-libs/kweathercore-0.8.0
+~dev-util/massif-visualizer-0.8.0
 ~games-puzzle/skladnik-0.5.2
 ~gui-apps/xwaylandvideobridge-0.4.0
 ~kde-frameworks/oxygen-icons-6.0.0
+~media-gfx/kgraphviewer-2.5.0
 =media-libs/kquickimageeditor-0.3.0-r100
 ~media-libs/libqaccessibilityclient-0.6.0
 ~media-libs/mpvqt-1.0.0

@@ -1,6 +1,10 @@
 # Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
+# Arthur Zamarin <arthurzam@gentoo.org> (2024-05-13)
+# Requires dev-util/shelltestrunner
+app-arch/mt-st test
+
 # Ionen Wolkens <ionen@gentoo.org> (2024-04-02)
 # dev-qt/qtsvg:6 is not keyworded here yet (bug #918896)
 dev-qt/qtdeclarative:6 svg
@@ -603,10 +607,6 @@ gnome-base/gnome classic extras
 # Pacho Ramos <pacho@gentoo.org> (2013-12-02)
 # Missing keywords, bug #493156
 media-libs/libgphoto2 serial
-
-# Pacho Ramos <pacho@gentoo.org> (2013-11-28)
-# Missing keywords, bug #492820
-net-im/telepathy-connection-managers sipe
 
 # Pacho Ramos <pacho@gentoo.org> (2013-07-20)
 # Keywords pending, bug #476710

@@ -70,7 +70,7 @@ WINE_DLOPEN_DEPEND="
 	truetype? ( media-libs/freetype[${MULTILIB_USEDEP}] )
 	udisks? ( sys-apps/dbus[${MULTILIB_USEDEP}] )
 	v4l? ( media-libs/libv4l[${MULTILIB_USEDEP}] )
-	vulkan? ( media-libs/vulkan-loader[${MULTILIB_USEDEP}] )
+	vulkan? ( media-libs/vulkan-loader[X?,${MULTILIB_USEDEP}] )
 "
 WINE_COMMON_DEPEND="
 	${WINE_DLOPEN_DEPEND}
@@ -251,6 +251,7 @@ src_configure() {
 
 	tc-ld-force-bfd # builds with non-bfd but broken at runtime (bug #867097)
 	filter-lto # build failure
+	filter-flags -Wl,--gc-sections # runtime issues (bug #931329)
 	use custom-cflags || strip-flags # can break in obscure ways at runtime
 	use crossdev-mingw || PATH=${BROOT}/usr/lib/mingw64-toolchain/bin:${PATH}
 

@@ -73,7 +73,7 @@ WINE_DLOPEN_DEPEND="
 	truetype? ( media-libs/freetype[${MULTILIB_USEDEP}] )
 	udisks? ( sys-apps/dbus[${MULTILIB_USEDEP}] )
 	v4l? ( media-libs/libv4l[${MULTILIB_USEDEP}] )
-	vulkan? ( media-libs/vulkan-loader[${MULTILIB_USEDEP}] )
+	vulkan? ( media-libs/vulkan-loader[X?,${MULTILIB_USEDEP}] )
 "
 WINE_COMMON_DEPEND="
 	${WINE_DLOPEN_DEPEND}
@@ -278,6 +278,7 @@ src_configure() {
 	)
 
 	filter-lto # build failure
+	filter-flags -Wl,--gc-sections # runtime issues (bug #931329)
 	use custom-cflags || strip-flags # can break in obscure ways at runtime
 
 	# wine uses linker tricks unlikely to work with non-bfd/lld (bug #867097)

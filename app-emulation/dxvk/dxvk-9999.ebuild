@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{10..13} )
 MULTILIB_ABIS="amd64 x86" # allow usage on /no-multilib/
 MULTILIB_COMPAT=( abi_x86_{32,64} )
 inherit flag-o-matic meson-multilib python-any-r1
@@ -55,6 +55,7 @@ BDEPEND="
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.10.3-wow64-setup.patch
+	"${FILESDIR}"/${PN}-2.3.1-gcc14.patch
 )
 
 pkg_pretend() {

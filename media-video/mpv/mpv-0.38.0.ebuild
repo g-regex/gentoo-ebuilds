@@ -4,7 +4,7 @@
 EAPI=8
 
 LUA_COMPAT=( lua5-1 luajit )
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{10..13} )
 inherit flag-o-matic lua-single meson optfeature pax-utils python-single-r1 xdg
 
 if [[ ${PV} == 9999 ]]; then
@@ -12,7 +12,7 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://github.com/mpv-player/mpv.git"
 else
 	SRC_URI="https://github.com/mpv-player/mpv/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~ppc ~ppc64 ~riscv ~x86 ~amd64-linux"
+	KEYWORDS="amd64 ~arm arm64 ~loong ppc ppc64 ~riscv x86 ~amd64-linux"
 fi
 
 DESCRIPTION="Media player for the command line"
@@ -271,5 +271,6 @@ src_install() {
 pkg_postinst() {
 	xdg_pkg_postinst
 
-	optfeature "URL support with USE=lua" net-misc/yt-dlp
+	optfeature "various websites URL support$(usev !lua \
+		" (requires ${PN} with USE=lua)")" net-misc/yt-dlp
 }

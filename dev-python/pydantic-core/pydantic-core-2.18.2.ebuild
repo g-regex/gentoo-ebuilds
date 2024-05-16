@@ -107,7 +107,7 @@ LICENSE+="
 	|| ( Apache-2.0 Boost-1.0 )
 "
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~arm64 ~loong ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86"
+KEYWORDS="~amd64 arm arm64 ~loong ppc ppc64 ~riscv ~s390 sparc x86"
 
 RDEPEND="
 	>=dev-python/typing-extensions-4.7.1[${PYTHON_USEDEP}]
@@ -145,5 +145,7 @@ python_test() {
 
 	local -x PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
 	rm -rf pydantic_core || die
+	# tests link to libpython, so they fail to link on pypy3
+	[[ ${EPYTHON} != pypy3 ]] && cargo_src_test
 	epytest -p pytest_mock -p timeout
 }

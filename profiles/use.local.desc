@@ -559,6 +559,8 @@ app-emulation/fuse:backend-svga - Use svgalib rendering backend
 app-emulation/fuse:memlimit - Add compile-time memory usage limiting
 app-emulation/fuse-utils:gcrypt - Use dev-libs/libgcrypt for low-level crypto of some features, including logfiles.
 app-emulation/grub-xen-host:pvh - Build an additional grub bin for pvh.
+app-emulation/hercules-sdl:object-rexx - Enable REXX support via Open Object Rexx (dev-lang/oorexx)
+app-emulation/hercules-sdl:regina-rexx - Enable REXX support via Regina Rexx (dev-lang/regina-rexx)
 app-emulation/hyperd:libvirt - Enable support for KVM via libvirt
 app-emulation/hyperd:xen - Enable support for the Xen Hypervisor
 app-emulation/libcacard:passthrough - Enable smartcard passthrough support via sys-apps/pcsc-lite
@@ -1738,7 +1740,6 @@ dev-java/ant:xz - Enable XZ Ant tasks
 dev-java/commons-logging:log4j - Add optional support for log4j
 dev-java/dom4j:jaxen - Includes org.jaxen.dom4j package
 dev-java/emma:launcher - Install /usr/bin/emma. Collides with sci-biology/emboss.
-dev-java/icedtea-bin:headless-awt - Don't install the X backend for AWT, needed by some GUIs (used to be X flag)
 dev-java/java-config:compat - Install bin/java-config-2 symlink pointing to java-config
 dev-java/jaxen:dom4j - Includes org.jaxen.dom4j package
 dev-java/jaxen:jdom - Includes org.jaxen.jdom package
@@ -1885,6 +1886,7 @@ dev-lang/php:xslt - Build the XSL extension
 dev-lang/polyml:portable - Build the portable interpreter version of Poly/ML instead of native
 dev-lang/python:bluetooth - Build Bluetooth protocol support in socket module
 dev-lang/python:ensurepip - Install the ensurepip module that uses bundled wheels to bootstrap pip and setuptools (if disabled, it will be only possible to use venv `--without-pip`)
+dev-lang/python:gil - Build with Global Interpreter Lock. Disable to use the experimental freethreading mode.
 dev-lang/python:jit - Enable experimental Just-In-Time compilation support.
 dev-lang/python:libedit - Link readline extension against dev-libs/libedit instead of sys-libs/readline
 dev-lang/python:pgo - Optimize the build using Profile Guided Optimization (PGO) by running Python's test suite and collecting statistics based on its performance. This will take longer to build.
@@ -2200,7 +2202,6 @@ dev-libs/pocl:memmanager - Enables custom memory manager. Except for special cir
 dev-libs/poco:7z - Add Support for the 7z archive format
 dev-libs/poco:activerecord - Add ActiveRecord support
 dev-libs/poco:cppparser - Build and install a minimal C++ parser
-dev-libs/poco:crypto - Encryption and digital signing classes
 dev-libs/poco:data - Database abstraction layer to easily send/retrieve data to/from various databases
 dev-libs/poco:file2pagecompiler - Utility to convert ordinary files to Page Compiler source files
 dev-libs/poco:json - Add JSON support
@@ -2211,6 +2212,7 @@ dev-libs/poco:net - Classes to write network clients & servers
 dev-libs/poco:pagecompiler - Simple compiler translating HTML pages containing embedded C++ code into HTTPRequestHandler classes
 dev-libs/poco:pocodoc - POCO documentation generator
 dev-libs/poco:prometheus - Add prometheus monitoring system support
+dev-libs/poco:ssl - Encryption and digital signing classes
 dev-libs/poco:util - Several utility classes (like logger, timer, config file parser)
 dev-libs/poco:zip - Add support for the zip & gz archive formats
 dev-libs/ppl:cdd - Build the ppl_lcdd program for vertex/facet enumeration accepting the same input format as the programs shipped with sci-libs/cddlib and sci-libs/lrslib
@@ -2286,6 +2288,7 @@ dev-lisp/cmucl:doc - Installs package documentation
 dev-lisp/cmucl:source - Include source code for CMUCL in installation
 dev-lisp/ecl:gengc - Use generational garbage collection (experimental)
 dev-lisp/ecl:precisegc - Use type information during garbage collection (experimental)
+dev-lisp/ecl:unicode - Make the produced lisp support unicode
 dev-lisp/gcl:ansi - Build a GCL with ANSI support (else build a traditional CLtL1 image)
 dev-lisp/gcl:athena - Build xgcl - an interface to x11-libs/libXaw
 dev-lisp/sbcl:system-bootstrap - Bootstrap SBCL using either system SBCL installation or dev-lisp/clisp
@@ -2931,6 +2934,7 @@ dev-util/mingw64-runtime:default-ucrt - Use ucrt instead of msvcrt-os as the def
 dev-util/mingw64-runtime:idl - Install idl files
 dev-util/mingw64-runtime:libraries - Build extra libraries: mangle, pseh, winpthreads
 dev-util/mingw64-runtime:tools - Build extra tools: gendef, genidl, widl
+dev-util/mingw64-toolchain:bin-symlinks - Symlink executables to usr/bin to be in default PATH (conflicts with crossdev mingw, and crossdev is preferable for a fully featured toolchain)
 dev-util/nvidia-cuda-toolkit:debugger - Install the CUDA debugger
 dev-util/nvidia-cuda-toolkit:nsight - Install profiling and optimizing tools (nsight-compute, nsight-systems)
 dev-util/nvidia-cuda-toolkit:profiler - Install the NVIDIA CUDA profiler (nvprof) and the related libraries
@@ -3610,10 +3614,6 @@ kde-apps/kpimtextedit:designer - Build plugins for dev-qt/designer
 kde-apps/krdc:activities - Enable Plasma Activities support via kde-plasma/plasma-activities
 kde-apps/ksystemlog:kdesu - Run as root using kdesu from kde-plasma/kde-cli-tools
 kde-apps/ktouch:X - Enable support for X11 Keyboard Layout Detection
-kde-apps/ktp-accounts-kcm:experimental - Enables disabled telepathy services (currently only steam)
-kde-apps/ktp-common-internals:otr - Enable support for encrypted conversations using Off-The-Records messaging
-kde-apps/ktp-common-internals:sso - Enable support for Single sign-on through KAccounts
-kde-apps/ktp-text-ui:speech - Enable incoming messages to be read out using text-to-speech
 kde-apps/kwave:qtmedia - Enable playback via Qt5Multimedia
 kde-apps/libkcddb:kf6compat - Disable components colliding with KF6, depend on KF6 components instead
 kde-apps/libkcompactdisc:kf6compat - Disable components colliding with KF6, depend on KF6 components instead
@@ -4339,8 +4339,6 @@ media-libs/libmp4v2:utils - Install command-line utilities
 media-libs/libmypaint:gegl - Add support for media-libs/gegl
 media-libs/libopenglrecorder:openh264 - Enable H.264 support using media-libs/openh264
 media-libs/libopenglrecorder:vpx - Enable VP8/VP9 codec support via media-libs/libvpx
-media-libs/libopenshot:babl - Enable media-libs/babl support
-media-libs/libopenshot:opencv - Enable media-libs/opencv support
 media-libs/libpagemaker:tools - Build command line file format conversion tools
 media-libs/libpano13:suitesparse - Use Sparse Levenberg Marquardt algorithm instead of dense Levenberg Marquardt algorithm
 media-libs/libplacebo:glslang - Use dev-util/glslang to compile GLSL
@@ -5420,10 +5418,8 @@ net-analyzer/net-snmp:ucd-compat - Build UCD compatibility library. Increases si
 net-analyzer/netdata:aclk - Enable Agent-Cloud Link (ACLK) for securely connecting a Netdata Agent to your web browser through Netdata Cloud
 net-analyzer/netdata:bpf - Enable the extended Berkeley Packet Filter (eBPF) collector to monitor kernel-level metrics about applications with per-second granularity
 net-analyzer/netdata:cloud - Enable Netdata Cloud support
-net-analyzer/netdata:compression - Enable compression via zlib
 net-analyzer/netdata:dbengine - Enable the Netdata database engine
 net-analyzer/netdata:ipmi - Install sys-apps/ipmitool required for monitoring IPMI sensors.
-net-analyzer/netdata:jsonc - Enable optimization of JSON using dev-libs/json-c
 net-analyzer/netdata:mongodb - Enable support for the mongodb backend
 net-analyzer/netdata:nfacct - Enable the nfacct plugin
 net-analyzer/netdata:nodejs - Enable use of nodejs (which some plugins use)
@@ -5911,17 +5907,6 @@ net-im/telegram-desktop:enchant - Use the app-text/enchant spell-checking backen
 net-im/telegram-desktop:fonts - Use builtin patched copy of open-sans fonts (overrides fontconfig)
 net-im/telegram-desktop:qt6 - Build with Qt6 support
 net-im/telegram-desktop:qt6-imageformats - Add support for HEIF, AVIF and JpegXL by bundling kde-frameworks/kimageformats
-net-im/telepathy-connection-managers:gadu - Enable Gadu Gadu protocol support.
-net-im/telepathy-connection-managers:icq - Enable ICQ IM protocol support.
-net-im/telepathy-connection-managers:irc - Enable Internet Relay Chat (IRC) support.
-net-im/telepathy-connection-managers:meanwhile - Enable meanwhile support for Sametime protocol.
-net-im/telepathy-connection-managers:msn - Enable MSN Messenger IM protocol support.
-net-im/telepathy-connection-managers:sip - Enable SIP/SIMPLE messaging and calling.
-net-im/telepathy-connection-managers:sipe - Enable Sip Exchange Protocol.
-net-im/telepathy-connection-managers:steam - Enable Steam Chat support.
-net-im/telepathy-connection-managers:xmpp - Enable XMPP protocol handler (this is also Google Talk).
-net-im/telepathy-connection-managers:yahoo - Enable Yahoo! messaging support.
-net-im/telepathy-connection-managers:zeroconf - Enable Link-Local Messaging via the zeroconf or Bonjour protocol.
 net-im/tkabber:plugins - Enables installation the extra plugins
 net-im/toxic:audio-notify - Enables native sound notifications
 net-im/toxic:games - Enables some small mini-games
@@ -6161,7 +6146,6 @@ net-libs/qxmpp:omemo - Enable OMEMO encryption
 net-libs/rabbitmq-c:tools - Builds cli tools to interact with brokers
 net-libs/rtrlib:ssh - Enable SSH support
 net-libs/shairplay:playfair - Add support for handling fairplay handshake (used in for example screen mirroring)
-net-libs/telepathy-qt:farstream - Enable support for audio/video calls via farstream
 net-libs/tox:av - Adds support for audio and video.
 net-libs/tox:daemon - Enable the DHT Bootstrap Daemon.
 net-libs/tox:dht-node - Enables DHT Bootstrap Node.
@@ -6911,8 +6895,6 @@ net-voip/mumble:pipewire - Enable pipewire support for audio output.
 net-voip/mumble:rnnoise - Enable alternative noise suppression option based on RNNoise.
 net-voip/murmur:grpc - Use net-libs/grpc to enable remote control capabilities.
 net-voip/murmur:ice - Use dev-libs/Ice to enable remote control capabilities.
-net-voip/telepathy-gabble:jingle - Enable voice calls for jabber
-net-voip/telepathy-gabble:plugins - Enable plugin loader
 net-voip/umurmur:mbedtls - Use net-libs/mbedtls as TLS provider
 net-voip/umurmur:shm - Enable shared memory support
 net-voip/yate:amrnb - use AMR-NB
@@ -7290,6 +7272,7 @@ sci-libs/blis:serial - Use no threadding model
 sci-libs/caffe2:distributed - Support distributed applications
 sci-libs/caffe2:fbgemm - Use FBGEMM
 sci-libs/caffe2:ffmpeg - Add support for video processing operators
+sci-libs/caffe2:flash - Enable flash attention
 sci-libs/caffe2:gloo - Use sci-libs/gloo
 sci-libs/caffe2:mkl - Use sci-libs/mkl for blas, lapack and sparse blas routines
 sci-libs/caffe2:nnpack - Use NNPACK
@@ -7437,6 +7420,7 @@ sci-libs/nlopt:octave - Add plugin for sci-mathematics/octave
 sci-libs/o2scl:armadillo - Build matrix manipulation with sci-libs/armadillo
 sci-libs/o2scl:eigen - Build matrix manipulation with dev-cpp/eigen
 sci-libs/octomap:dynamicEDT3D - Build and install dynamicEDT3D library: A library for incrementally updatable Euclidean distance transforms in 3D.
+sci-libs/onnx:disableStaticReg - Disable Static Registration
 sci-libs/openblas:dynamic - Build dynamic architecture detection at run time (for multi targets)
 sci-libs/openblas:eselect-ldso - Enable BLAS/LAPACK runtime switching
 sci-libs/openblas:index-64bit - Compile a separate INTERFACE64 OpenBLAS
@@ -7896,7 +7880,6 @@ sys-apps/linux-misc-apps:usbip - Include USB/IP binaries to replace net-misc/usb
 sys-apps/lm-sensors:contrib - Installs user contributed configuration files so you don't need to find settings on your own for your system if somebody else has already created such a configuration for sensors/mainboards you are using.
 sys-apps/lm-sensors:sensord - Enable sensord - a daemon that can be used to periodically log sensor readings from hardware health-monitoring chips
 sys-apps/man-db:manpager - Enable manpager wrapper for colorizing output
-sys-apps/memtest86:serial - Compile with serial console support
 sys-apps/memtest86+:bios32 - Compile a BIOS-bootable 32bit memtest image
 sys-apps/memtest86+:bios64 - Compile a BIOS-bootable 64bit memtest image
 sys-apps/memtest86+:boot - Install to /boot in addition to /usr/share/memtest86+/
@@ -8010,6 +7993,7 @@ sys-apps/util-linux:rtas - Add support for the Run Time Abstraction Services (RT
 sys-apps/util-linux:su - build the su program
 sys-apps/util-linux:suid - Install some programs with suid bit set to provide additional functionality. mount/umount: non-root users may mount/umount devices wall/write: non-root users can notify other users su: non-root users may become root
 sys-apps/util-linux:tty-helpers - install the mesg/wall/write tools for talking to local users
+sys-apps/util-linux:uuidd - build uuidd daemon
 sys-apps/watchdog:nfs - enable support for checking nfs mounts
 sys-apps/xdg-desktop-portal:flatpak - Enable sys-apps/flatpak integration
 sys-apps/xdg-desktop-portal:seccomp - Use sys-apps/bubblewrap (which requires seccomp) to sandbox some functionality like icon handling
@@ -8805,10 +8789,8 @@ www-servers/lighttpd:brotli - Enable output compression via app-arch/brotli (rec
 www-servers/lighttpd:gnutls - Build module for TLS via net-libs/gnutls
 www-servers/lighttpd:maxminddb - Add support for geolocation using dev-libs/libmaxminddb
 www-servers/lighttpd:mbedtls - Build module for TLS via net-libs/mbedtls
-www-servers/lighttpd:mmap - Use mmap when sendfile is not available
 www-servers/lighttpd:nettle - Use dev-libs/nettle as crypto backend
 www-servers/lighttpd:nss - Build module for TLS via Mozilla's Network Security Services
-www-servers/lighttpd:rrdtool - Enable rrdtool support via mod_rrdtool
 www-servers/lighttpd:webdav - Enable webdav properties
 www-servers/lighttpd:zlib - Enable output compression via gzip or deflate algorithms from sys-libs/zlib
 www-servers/lighttpd:zstd - Enable output compression via Zstandard (app-arch/zstd) algorithm

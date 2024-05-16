@@ -154,7 +154,7 @@ BDEPEND="
 EPYTEST_XDIST=1
 distutils_enable_tests pytest
 
-QA_PREBUILT="usr/lib/py.*/site-packages/libcst/native.*"
+QA_FLAGS_IGNORED="usr/lib/py.*/site-packages/libcst/native.*"
 
 python_test() {
 	local EPYTEST_IGNORE=(
@@ -179,4 +179,9 @@ python_test() {
 	rm native || die
 
 	[[ ${ret} -ne 0 ]] && die "Tests failed on ${EPYTHON}"
+}
+
+python_test_all() {
+	cd native || die
+	cargo_src_test
 }

@@ -4,7 +4,7 @@
 EAPI=8
 
 MULTILIB_COMPAT=( abi_x86_{32,64} )
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{10..13} )
 inherit autotools edo flag-o-matic multilib multilib-build optfeature
 inherit prefix python-any-r1 toolchain-funcs wrapper
 
@@ -79,7 +79,7 @@ WINE_DLOPEN_DEPEND="
 	truetype? ( media-libs/freetype[${MULTILIB_USEDEP}] )
 	udisks? ( sys-apps/dbus[${MULTILIB_USEDEP}] )
 	v4l? ( media-libs/libv4l[${MULTILIB_USEDEP}] )
-	vulkan? ( media-libs/vulkan-loader[${MULTILIB_USEDEP}] )
+	vulkan? ( media-libs/vulkan-loader[X?,wayland?,${MULTILIB_USEDEP}] )
 "
 WINE_COMMON_DEPEND="
 	${WINE_DLOPEN_DEPEND}
@@ -177,6 +177,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-7.17-noexecstack.patch
 	"${FILESDIR}"/${PN}-7.20-unwind.patch
 	"${FILESDIR}"/${PN}-8.13-rpath.patch
+	"${FILESDIR}"/${P}-musl-ioctls-header.patch
 )
 
 pkg_pretend() {
@@ -320,6 +321,7 @@ src_configure() {
 	)
 
 	filter-lto # build failure
+	filter-flags -Wl,--gc-sections # runtime issues (bug #931329)
 	use custom-cflags || strip-flags # can break in obscure ways at runtime
 
 	# wine uses linker tricks unlikely to work with non-bfd/lld (bug #867097)

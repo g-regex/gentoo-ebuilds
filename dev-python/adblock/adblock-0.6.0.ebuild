@@ -1,4 +1,4 @@
-# Copyright 2021-2023 Gentoo Authors
+# Copyright 2021-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -71,7 +71,7 @@ CRATES="
 "
 DISTUTILS_EXT=1
 DISTUTILS_USE_PEP517=maturin
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{10..13} )
 inherit cargo distutils-r1
 
 DESCRIPTION="Python wrapper for Brave's adblocking library, which is written in Rust"
@@ -106,6 +106,9 @@ python_test() {
 		# unimportant (for us) test that uses the dir that we delete below
 		# so pytest does not try to load it while lacking extensions
 		tests/test_typestubs.py::test_functions_and_methods_exist_in_rust
+		# FileNotFound exception test that triggers a new assertion in
+		# python:3.13[debug], not an issue for normal usage (bug #931898)
+		tests/test_engine.py::test_serde_file
 	)
 	local EPYTEST_IGNORE=(
 		# not very meaningful here (e.g. validates changelog),
