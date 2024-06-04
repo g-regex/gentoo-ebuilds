@@ -11,11 +11,11 @@ HOMEPAGE="https://gitlab.freedesktop.org/wlroots/wlroots"
 if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://gitlab.freedesktop.org/${PN}/${PN}.git"
 	inherit git-r3
-	SLOT="0/9999"
+	SLOT="0.18"
 else
 	SRC_URI="https://gitlab.freedesktop.org/${PN}/${PN}/-/releases/${PV}/downloads/${P}.tar.gz"
 	KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
-	SLOT="0/$(ver_cut 2)"
+	SLOT="$(ver_cut 1-2)"
 fi
 
 LICENSE="MIT"
@@ -28,7 +28,11 @@ REQUIRED_USE="
 
 DEPEND="
 	>=dev-libs/wayland-1.22.0
-	media-libs/mesa[egl(+),gles2(+)]
+	media-libs/libglvnd
+	|| (
+		>=media-libs/mesa-24.1.0_rc1[opengl]
+		<media-libs/mesa-24.1.0_rc1[egl(+),gles2]
+	)
 	>=x11-libs/libdrm-2.4.120
 	x11-libs/libxkbcommon
 	>=x11-libs/pixman-0.42.0

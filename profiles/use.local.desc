@@ -42,6 +42,7 @@ app-admin/clsync:socket-library - Build the control and monitoring socket librar
 app-admin/conky:apcupsd - Enable support for sys-power/apcupsd
 app-admin/conky:bundled-toluapp - Enable support for bundled toluapp. This only makes sense in combination with the lua-* flags
 app-admin/conky:cmus - Enable monitoring of music played by media-sound/cmus
+app-admin/conky:colour-name-map - Include mappings of colour name
 app-admin/conky:extras - Enable syntax highlighting for app-editors/nanoand app-editors/vim
 app-admin/conky:ical - Enable support for events from iCalendar (RFC 5545) files using dev-libs/libical
 app-admin/conky:intel-backlight - Enable support for Intel backlight
@@ -462,7 +463,6 @@ app-editors/gvim:crypt - Use dev-libs/libsodium for crypto support
 app-editors/gvim:cscope - Enable cscope interface
 app-editors/gvim:netbeans - Include netbeans external editor integration support
 app-editors/gvim:racket - Enable support for Scheme using dev-scheme/racket
-app-editors/helix:grammar - Build and install grammar language files
 app-editors/jasspa-microemacs:nanoemacs - Build NanoEmacs instead of MicroEmacs
 app-editors/joe:xterm - Enable full xterm clipboard support
 app-editors/leafpad:emacs - Enable Emacs key theme
@@ -512,7 +512,6 @@ app-emacs/emacs-w3m:gzip-el - Compress bundled Emacs Lisp source
 app-emacs/flim:oauth2 - Support OAuth2 authentication (app-emacs/oauth2)
 app-emacs/gap-mode:completion - Install GAP backend for app-emacs/company-mode to "complete anything."
 app-emacs/gap-mode:lint - Support automatically linting GAP code via app-emacs/flycheck and dev-gap/gaplint.
-app-emacs/magit:libgit - Use libgit (app-emacs/libegit2)
 app-emacs/mu-cite:bbdb - Include support for app-emacs/bbdb
 app-emacs/org-mode:odt-schema - Install non-free schema files for OpenDocument Text exporter
 app-emacs/remember:bbdb - Include support for app-emacs/bbdb
@@ -655,8 +654,6 @@ app-emulation/qemu:virtfs - Enable VirtFS via virtio-9p-pci / fsdev. See https:/
 app-emulation/qemu:vte - Enable terminal support (x11-libs/vte) in the GTK+ interface
 app-emulation/qemu:xattr - Add support for getting and setting POSIX extended attributes, through sys-apps/attr. Requisite for the virtfs backend.
 app-emulation/qemu:xen - Enables support for Xen backends
-app-emulation/runv:libvirt - Enable support for KVM via libvirt
-app-emulation/runv:xen - Enable support for the Xen Hypervisor
 app-emulation/ski:debug - enable extra binary emulation debugging via sys-libs/binutils-libs
 app-emulation/spice:smartcard - Enable smartcard remoting using app-emulation/libcacard
 app-emulation/uade:fuse - Enable sys-fs/fuse uadefs frontend for on-the-fly WAV conversion
@@ -672,14 +669,15 @@ app-emulation/virt-viewer:spice - Support connecting to SPICE-enabled virtual ma
 app-emulation/virt-viewer:vnc - Support connecting to VNC-enabled virtual machines.
 app-emulation/virt-viewer:vte - Enable terminal support (x11-libs/vte) in the GTK+ interface
 app-emulation/virt-what:dmi - Use sys-apps/dmidecode to read firmware data
-app-emulation/virtualbox:dtrace - Install dtrace Extension Pack
-app-emulation/virtualbox:headless - Build without any graphic frontend
+app-emulation/virtualbox:dtrace - Install dtrace Extension Pack.
+app-emulation/virtualbox:headless - Build without any graphic frontend.
 app-emulation/virtualbox:lvm - Build VBoxVolInfo that needs devicemapper from sys-fs/lvm2.
 app-emulation/virtualbox:pax-kernel - Apply patch needed for pax enabled kernels.
-app-emulation/virtualbox:sdk - Enable building of SDK
+app-emulation/virtualbox:sdk - Enable building of SDK.
 app-emulation/virtualbox:udev - Controls installation of special USB udev rules.
-app-emulation/virtualbox:vboxwebsrv - Build and install the VirtualBox webservice
-app-emulation/virtualbox:vde - Support for VDE networking via net-misc/vde
+app-emulation/virtualbox:vboxwebsrv - Build and install the VirtualBox webservice.
+app-emulation/virtualbox:vde - Support for VDE networking via net-misc/vde.
+app-emulation/virtualbox:vmmraw - Enable 32-bit support on a 64-bit kernel.
 app-emulation/virtualbox-kvm:dtrace - Install dtrace Extension Pack
 app-emulation/virtualbox-kvm:lvm - Build VBoxVolInfo that needs devicemapper from sys-fs/lvm2.
 app-emulation/virtualbox-kvm:sdk - Enable building of SDK
@@ -754,9 +752,6 @@ app-forensics/aide:curl - Use curl for http,https and ftp backends
 app-forensics/aide:e2fs - Enable support for checking file attributes on ext2/ext3/ext4 filesystems
 app-forensics/chkrootkit:cron - Install cron script for weekly rootkit scans
 app-forensics/honggfuzz:clang - Enable clang support (pull sys-libs/blocksruntime dependency).
-app-forensics/libewf:bfio - Enables libbfio for chaining file in file handling
-app-forensics/libewf:fuse - Enable fuse support for ewfmount
-app-forensics/libewf:uuid - Enable UUID support in the ewftools
 app-forensics/lynis:cron - Install /etc/cron.* files
 app-forensics/sleuthkit:aff - Enable extra aff formats
 app-forensics/sleuthkit:ewf - Enable libewf support
@@ -1013,6 +1008,8 @@ app-misc/vifm:extended-keys - Support for extended keys (arrows, home etc)
 app-misc/vifm:gtk - Use gtk+ to determine mimetypes
 app-misc/vifm:vim - Install the vifm vim plugin and vim-compatible documentation
 app-misc/worker:avfs - Enable support for sys-fs/avfs
+app-misc/yq:yq-symlink - Create a yq symlink to yq-python.
+app-misc/yq-go:yq-symlink - Create a yq symlink to yq-go.
 app-mobilephone/gammu:curl - Enables curl support
 app-mobilephone/gammu:irda - Enables infrared support
 app-mobilephone/gammu:mysql - Use mysql for data storage
@@ -1216,7 +1213,7 @@ app-text/mathtex:png - Generate png images by default instead of gif
 app-text/msort:heap - Use heap instead of alloca()
 app-text/msort:icu - Use dev-libs/icu instead of dev-libs/libutf8proc.
 app-text/msort:libuninum - Use dev-libs/libuninum for conversion.
-app-text/mupdf:drm - Enable support for Digital rights management (DRM)
+app-text/mupdf:archive - Enable support for CBR and other archive formats using libarchive
 app-text/pandoc:embed-data-files - Embed data files in binary for relocatable executable.
 app-text/pandoc:trypandoc - Build trypandoc cgi executable.
 app-text/pandoc-bin:pandoc-symlink - Install pandoc symlink that points to pandoc-bin
@@ -1741,9 +1738,11 @@ dev-java/commons-logging:log4j - Add optional support for log4j
 dev-java/dom4j:jaxen - Includes org.jaxen.dom4j package
 dev-java/emma:launcher - Install /usr/bin/emma. Collides with sci-biology/emboss.
 dev-java/java-config:compat - Install bin/java-config-2 symlink pointing to java-config
+dev-java/javacup:ant-task - Build and register the ant-task
 dev-java/jaxen:dom4j - Includes org.jaxen.dom4j package
 dev-java/jaxen:jdom - Includes org.jaxen.jdom package
 dev-java/jaxen:xom - Includes org.jaxen.xom package
+dev-java/jflex:ant-task - Build and register the ant-task
 dev-java/junit:migration-support - Include the junit-jupiter-migrationsupport module, which helps with migration from JUnit 4 to JUnit Jupiter
 dev-java/junit:suite - Include the JUnit Platform Suite Engine, which adds test suite support
 dev-java/junit:vintage - Include JUnit Vintage, which allows JUnit 5 to run JUnit 3 and JUnit 4 tests
@@ -1760,6 +1759,7 @@ dev-java/openjfx:media - Compile media module, based on gstreamer-minimal (does 
 dev-java/openjfx:source - Install JavaFX sources
 dev-java/pdfbox:tools - Build and install pdfbox-tools
 dev-java/protobuf-java:system-protoc - Use protoc provided by dev-libs/protobuf
+dev-java/qdox:ant-task - Build the ant-task
 dev-java/rxtx:lfd - Installs and uses LockFileServer daemon (lfd)
 dev-java/sbt:binary - Install from (Gentoo-compiled) binary instead of building from sources. Set this when you run out of memory during build.
 dev-lang/algol68g:mpfr - Add support for multiprecision floating point rouding
@@ -1845,8 +1845,6 @@ dev-lang/nqp:clang - Toggle usage of the clang compiler in conjunction with Moar
 dev-lang/nqp:moar - Build the MoarVM backend (experimental/broken)
 dev-lang/ocaml:flambda - Enables the Flambda optimizer: A new intermediate representation (introduced in ocaml 4.03) in the depths of the compiler designed to allow for better inlining.
 dev-lang/ocaml:spacetime - Enables the Spacetime memory profiler. See https://caml.inria.fr/pub/docs/manual-ocaml/spacetime.html for more information.
-dev-lang/perl:ithreads - Enable Perl threads, has some compatibility problems
-dev-lang/perl:quadmath - Enable 128bit floating point arithmetic via libquadmath
 dev-lang/php:apparmor - Support FPM application confinement through sys-libs/libapparmor
 dev-lang/php:argon2 - Enable password hashing algorithm from app-crypt/argon2
 dev-lang/php:bcmath - Enable the BCMath Arbitrary Precision Mathematics extension
@@ -2572,7 +2570,7 @@ dev-python/python-mpd2:twisted - Enable twisted support
 dev-python/python-stdnum:vies - Enable VIES
 dev-python/pyudev:qt5 - Install PyQt5 bindings
 dev-python/pyzmq:drafts - Enable draft API support
-dev-python/qiskit-terra:visualization - Enable visualization modules
+dev-python/qiskit:visualization - Enable visualization modules
 dev-python/rarfile:compressed - Enables the module to support compressed v3 archives by calling the app-arch/unrar.
 dev-python/reedsolo:native-extensions - Compile native C extensions.
 dev-python/rfc3986:idna - enable support for the IDNA specification (RFC 5891)
@@ -2838,6 +2836,7 @@ dev-util/babeltrace:elfutils - Build the dev-util/lttng-ust debug information fi
 dev-util/babeltrace:plugins - Build support for Babeltrace 2 Python plugins
 dev-util/bpftool:caps - Use sys-libs/libcap to enable unprivileged run support
 dev-util/bpftool:llvm - Use sys-devel/llvm
+dev-util/breakpad:tools - Build tools
 dev-util/buildbot:docker - Add support for worker docker command steps
 dev-util/buildbot:irc - Add support for status delivery through an ircbot.
 dev-util/cargo-audit:fix - Add support for 'fix' subcommand (experimental)
@@ -2952,6 +2951,7 @@ dev-util/ostree:sodium - Use libsodium for ed25519
 dev-util/ostree:soup - Use libsoup for networking
 dev-util/perf:babeltrace - Enable dev-util/babeltrace support
 dev-util/perf:bpf - Enable support for eBPF features with dev-libs/libbpf
+dev-util/perf:capstone - Use dev-libs/capstone for disassembly support
 dev-util/perf:clang - Enable builtin clang and LLVM support
 dev-util/perf:doc - Build documentation and man pages. With this USE flag disabled, the --help parameter for perf and its sub-tools will not be available. This is optional because it depends on a few documentation handling tools that are not always welcome on user systems.
 dev-util/perf:libpfm - Enable dev-libs/libpfm support
@@ -2983,7 +2983,6 @@ dev-util/schroot:zfs - Enable support for chroots using ZFS shapshots/clones
 dev-util/sdl-jstest:sdl - Enable media-libs/libsdl2 based input test
 dev-util/sdl-jstest:sdl1 - Enable media-libs/libsdl based input test
 dev-util/sysprof:unwind - Use sys-libs/libunwind to unwind the stack
-dev-util/trace-cmd:udis86 - Enable support for dev-libs/udis86 disassembler library
 dev-util/uftrace:capstone - Use capstone to provide dynamic tracing without recompilation
 dev-util/vulkan-tools:cube - Build the cube/cubepp demos
 dev-util/watchman:python - Install pywatchman bindings and the watchman-{wait,make} utils
@@ -3543,6 +3542,7 @@ kde-apps/kdecore-meta:webengine - Enable www-client/falkon which depends on dev-
 kde-apps/kdeedu-meta:webengine - Enable packages requiring dev-qt/qtwebengine
 kde-apps/kdegraphics-meta:color-management - Enable color management via media-libs/opencolorio
 kde-apps/kdegraphics-meta:screencast - Pull in kde-apps/spectacle for screenshot/screenrecording support
+kde-apps/kdegraphics-meta:webengine - Enable page scanning support via media-gfx/skanpage
 kde-apps/kdemultimedia-meta:cdrom - Include packages for optical discs
 kde-apps/kdenetwork-meta:bittorrent - Pull in net-p2p/ktorrent for BitTorrent protocol support
 kde-apps/kdenetwork-meta:dropbox - Enable support for Dropbox in kde-apps/dolphin via kde-apps/dolphin-plugins-dropbox
@@ -3572,6 +3572,7 @@ kde-apps/kig:scripting - Support Python scripting
 kde-apps/kio-extras:X - Enable support for XCursor thumbnails via x11-libs/libX11
 kde-apps/kio-extras:activities - Enable activities KIO worker and fileitem plugin
 kde-apps/kio-extras:ios - Enable AFC (Apple File Conduit) KIO worker for iOS devices support
+kde-apps/kio-extras:kf6compat - Disable components colliding with KF6, depend on KF6 components instead
 kde-apps/kio-extras:man - Enable manpages KIO worker
 kde-apps/kio-extras:nfs - Enable NFS support using net-libs/libtirpc
 kde-apps/kio-extras:phonon - Enable file audio preview plugin using media-libs/phonon
@@ -3620,6 +3621,7 @@ kde-apps/libkcompactdisc:kf6compat - Disable components colliding with KF6, depe
 kde-apps/libkdepim:designer - Build plugins for dev-qt/designer
 kde-apps/libkgapi:kf6compat - Disable components colliding with KF6, depend on KF6 components instead
 kde-apps/libkleo:fancyviewer - Use kde-apps/kpimtextedit for an improved audit log viewer
+kde-apps/libksane:kf6compat - Disable components colliding with KF6, depend on KF6 components instead
 kde-apps/libksane:kwallet - Enable encrypted storage of passwords with kde-frameworks/kwallet
 kde-apps/mailcommon:designer - Build plugins for dev-qt/designer
 kde-apps/marble:aprs - Enable support for APRS data sources
@@ -4099,6 +4101,7 @@ media-gfx/exiv2:webready - Support reading metadata over the internet
 media-gfx/fbida:X - Install the Motif based image viewer "ida"
 media-gfx/fbida:fbcon - Install the framebuffer image viewer "fbi"
 media-gfx/fbida:ghostscript - Install the framebuffer ghostscript viewer "fbgs"
+media-gfx/fig2dev:ghostscript - Require app-text/ghostscript-gpl to export PDF an bitmap formats
 media-gfx/fontforge:truetype-debugger - Enable truetype debugger in fontforge
 media-gfx/fontforge:woff2 - Enable support for WOFF2 format
 media-gfx/fotowall:webcam - Enable webcam support
@@ -4193,6 +4196,7 @@ media-gfx/openvdb:utils - Build utility binaries
 media-gfx/photoqt:devil - Support additional image formats using media-libs/devil
 media-gfx/photoqt:freeimage - Support additional image formats using media-libs/freeimage
 media-gfx/photoqt:mpv - Support for video files using media-video/mpv
+media-gfx/plantuml:ant-task - Provides classes used to manage PlantUML Ant task
 media-gfx/potrace:metric - default to a4 paper size and metric measurement
 media-gfx/povray:io-restrictions - POV-Ray's mechanism for control of I/O operations
 media-gfx/pqiv:archive - Enable support for images in archives and cbX comic book files
@@ -4378,6 +4382,7 @@ media-libs/libvmaf:embed-models - Compile default vmaf models into the library (
 media-libs/libvpl:drm - Build with DRM support
 media-libs/libvpl:experimental - Build dispatcher with experimental APIs
 media-libs/libvpl:tools - Build decode/encode/analyse/inspect tools
+media-libs/libvpl-tools:drm - Build with DRM support
 media-libs/libvpx:highbitdepth - Enable 10 and 12 bit support for VP9.
 media-libs/libvpx:postproc - Enable additional post processing filters
 media-libs/libwebp:swap-16bit-csp - Enable byte swapping for 16 bit colorspace
@@ -4996,12 +5001,8 @@ media-tv/mythtv:vpx - Enable VP8/VP9 support for media-libs/libvpx
 media-tv/mythtv:wrapper - Use Ubuntu mythtfrontend wrapper
 media-tv/mythtv:x265 - Enable h265 encoding using x265
 media-tv/mythtv:xmltv - Support media-tv/xmltv TV listing - not used by Schedules Direct]
-media-tv/tvheadend:capmt - Enable support for capmt (dvbapi) protocol
-media-tv/tvheadend:constcw - Enable support for the constcw protocol
-media-tv/tvheadend:cwc - Enable support for the cwc (newcamd) protocol
 media-tv/tvheadend:ddci - Enable support for DDCI hardware
 media-tv/tvheadend:dvbcsa - Enable decryption of the DVB Common Scrambling Algorithm
-media-tv/tvheadend:dvben50221 - Enable support for hardware CAM
 media-tv/tvheadend:hdhomerun - Enable support for the HDHomeRun device
 media-tv/tvheadend:imagecache - Enable support for image caching
 media-tv/tvheadend:iptv - Enable support for Internet Protocol TV
@@ -5668,14 +5669,23 @@ net-dns/knot-resolver:kresc - Build (experimental) command-line client
 net-dns/knot-resolver:nghttp2 - DNS-over-HTTPS support
 net-dns/mydns:alias - Enable David Phillips aliasing
 net-dns/mydns:status - Enable the STATUS opcode to check server status
-net-dns/nsd:bind8-stats - Enables BIND8 like NSTATS and XSTATS
+net-dns/nsd:bind8-stats - Enables BIND8 like NSTATS and XSTATS and statistics in nsd-control
+net-dns/nsd:default-znow - Enable full relocation binding at load-time (RELRO NOW, to protect GOT and .dtor areas)
 net-dns/nsd:dnstap - Enable the structured binary log format
+net-dns/nsd:ipv6 - Enable IPv6 support
+net-dns/nsd:largefile - Enables support for large files
 net-dns/nsd:libevent - Use libevent or libev, useful when zone count is high
+net-dns/nsd:memclean - Cleanup memory (at exit) for eg. valgrind, memcheck
 net-dns/nsd:minimal-responses - If minimal responses are disabled, responses are more likely to get truncated, resulting in TCP fallback
-net-dns/nsd:munin - Install a plugin for net-analyzer/munin to graph statistical data from nsd.
+net-dns/nsd:munin - Install a plugin for net-analyzer/munin to graph statistical data from nsd
 net-dns/nsd:nsec3 - Enable NSEC3 support
+net-dns/nsd:packed - Enable packed structure alignment; uses less memory but has unaligned reads
+net-dns/nsd:radix-tree - Use a red-black tree for main lookups; uses less memory at the expense of more CPU
 net-dns/nsd:ratelimit - Enables ratelimiting, based on query name, type and source
-net-dns/nsd:root-server - Configure NSD as a root server
+net-dns/nsd:recvmmsg - Enable recvmmsg and sendmmsg compilation, faster but some kernel versions may have implementation problems for IPv6
+net-dns/nsd:root-server - Configure NSD as a root server (OBSOLETE: removed in >=4.9.x)
+net-dns/nsd:tfo - Enable TCP Fast Open
+net-dns/nsd:year2038 - Support timestamps after 2038 (glibc only!)
 net-dns/opendnssec:external-hsm - Enables support for storing DNSSEC keys through an arbitrary non-portage PKCS#11 interface, specified through an environment variable
 net-dns/opendnssec:opensc - Enables support for storing DNSSEC keys through a dev-libs/opensc PKCS#11 interface
 net-dns/opendnssec:signer - Enables signing capabilities for OpenDNSSEC
@@ -5764,6 +5774,7 @@ net-fs/openafs:pthreaded-ubik - Enable installation of pthreaded ubik applicatio
 net-fs/openafs:supergroups - Enable support for nested pts groups.
 net-fs/openafs:tsm - Enable use of the Tivoli TSM API libraries from app-backup/tsm for butc support. AMD64 only.
 net-fs/openafs:ubik-read-while-write - Enable vlserver read from db cache during write locks (EXPERIMENTAL)
+net-fs/s3backer:nbd - Support export as an nbd device
 net-fs/s3fs:gnutls - Enable net-libs/gnutls crypto backend
 net-fs/s3fs:nettle - Use dev-libs/nettle network functions with GnuTLS.
 net-fs/s3fs:nss - Enable dev-libs/nss crypto backend
@@ -5908,6 +5919,8 @@ net-im/telegram-desktop:fonts - Use builtin patched copy of open-sans fonts (ove
 net-im/telegram-desktop:qt6 - Build with Qt6 support
 net-im/telegram-desktop:qt6-imageformats - Add support for HEIF, AVIF and JpegXL by bundling kde-frameworks/kimageformats
 net-im/tkabber:plugins - Enables installation the extra plugins
+net-im/tokodon:mpv - Use media-libs/mpvqt instead of dev-qt/qtmultimedia for video playback (default)
+net-im/tokodon:webengine - Use dev-qt/qtwebengine for built-in authentication page (default is external browser)
 net-im/toxic:audio-notify - Enables native sound notifications
 net-im/toxic:games - Enables some small mini-games
 net-im/toxic:llvm - Enables support for LLVM Address Sanitizer
@@ -6805,6 +6818,7 @@ net-p2p/retroshare:cli - Enables terminal login support for retroshare-service
 net-p2p/retroshare:jsonapi - Enables the new RetroShare JSON API
 net-p2p/retroshare:libupnp - Enables UPnP port forwarding via net-libs/libupnp
 net-p2p/retroshare:miniupnp - Enables UPnP port forwarding via net-libs/miniupnpc
+net-p2p/retroshare:plugins - Enables plugin support
 net-p2p/retroshare:service - Enables the new RetroShare service
 net-p2p/retroshare:sqlcipher - Enables GXS database encryption via SQLCipher
 net-p2p/syncthing:tools - Install stdiscosrv, strelaysrv and other tools to /usr/libexec/syncthing/.
@@ -7283,7 +7297,6 @@ sci-libs/caffe2:opencv - Add support for image processing operators
 sci-libs/caffe2:openmp - Use OpenMP for parallel code
 sci-libs/caffe2:qnnpack - Use QNNPACK
 sci-libs/caffe2:rocm - Enable ROCm gpu computing support
-sci-libs/caffe2:tensorpipe - Use tensorpipe
 sci-libs/caffe2:xnnpack - Use XNNPACK
 sci-libs/cantera:hdf5 - Add HDF5 container files support
 sci-libs/cantera:python - Install Python bindings and conversion tools from Chemkin to Cantera format
@@ -7935,7 +7948,6 @@ sys-apps/s390-tools:zlib - build the zgetdump and dump2tar utilities
 sys-apps/s6:execline - enable support for dev-lang/execline
 sys-apps/s6-linux-init:sysv-utils - Install sysvinit compatibility symlinks for telinit, halt, poweroff, reboot, and shutdown
 sys-apps/sandbox:nnp - Enable NO_NEW_PRIVS which blocks set*id programs from gaining privileges (e.g. sudo)
-sys-apps/shadow:bcrypt - build the bcrypt password encryption algorithm
 sys-apps/shadow:su - build the su program
 sys-apps/smartmontools:caps - Build against sys-libs/libcap-ng to allow smartd to drop its privileges.
 sys-apps/smartmontools:daemon - Install the monitoring daemon (smartd) and associated scripts.
@@ -8512,57 +8524,6 @@ sys-power/nut:modbus - Includes all UPS drivers that use MODBUS.
 sys-power/nut:monitor - Add a QT5 gui monitor.
 sys-power/nut:serial - Includes all UPS drivers that use SERIAL.
 sys-power/nut:snmp - Includes all UPS drivers that use SNMP.
-sys-power/nut:ups_drivers_al175 - Driver for Eltek UPS models with AL175 alarm module
-sys-power/nut:ups_drivers_apcsmart - Driver for American Power Conversion Smart Protocol UPS equipment
-sys-power/nut:ups_drivers_apcsmart-old - Driver for American Power Conversion Smart Protocol UPS equipment
-sys-power/nut:ups_drivers_apcupsd-ups - Driver for apcupsd client access
-sys-power/nut:ups_drivers_bcmxcp - Driver for UPSes supporting the serial BCM/XCP protocol
-sys-power/nut:ups_drivers_bcmxcp_usb - Experimental driver for UPSes supporting the BCM/XCP protocol over USB
-sys-power/nut:ups_drivers_belkin - Driver for Belkin serial UPS equipment
-sys-power/nut:ups_drivers_belkinunv - Driver for Belkin "Universal UPS" and compatible
-sys-power/nut:ups_drivers_bestfcom - Driver for Best Power Fortress/Ferrups
-sys-power/nut:ups_drivers_bestfortress - Driver for old Best Fortress UPS equipment
-sys-power/nut:ups_drivers_bestuferrups - Driver for Best Power Micro-Ferrups
-sys-power/nut:ups_drivers_bestups - Driver for Best Power / SOLA (Phoenixtec protocol) UPS equipment
-sys-power/nut:ups_drivers_blazer_ser - Driver for Megatec/Q1 protocol serial based UPS equipment
-sys-power/nut:ups_drivers_blazer_usb - Driver for Megatec/Q1 protocol USB based UPS equipment
-sys-power/nut:ups_drivers_clone - Fake driver to clone outlets for device grouping
-sys-power/nut:ups_drivers_clone-outlet - Fake driver to clone outlets for device grouping
-sys-power/nut:ups_drivers_dummy-ups - Driver for multi-purpose UPS emulation
-sys-power/nut:ups_drivers_etapro - Driver for ETA UPS equipment
-sys-power/nut:ups_drivers_everups - Driver for Ever UPS models
-sys-power/nut:ups_drivers_gamatronic - Driver for Gamatronic UPS equipment
-sys-power/nut:ups_drivers_genericups - Driver for contact-closure UPS equipment
-sys-power/nut:ups_drivers_isbmex - Driver for ISBMEX UPS equipment
-sys-power/nut:ups_drivers_ivtscd - driver for the IVT Solar Controller Device
-sys-power/nut:ups_drivers_liebert - Driver for Liebert contact-closure UPS equipment
-sys-power/nut:ups_drivers_liebert-esp2 - Driver for Liebert UPS, using the ESP-II serial protocol
-sys-power/nut:ups_drivers_masterguard - Driver for Masterguard UPS equipment
-sys-power/nut:ups_drivers_metasys - Driver for Meta System UPS equipment
-sys-power/nut:ups_drivers_mge-shut - Driver for SHUT Protocol UPS equipment
-sys-power/nut:ups_drivers_mge-utalk - Driver for MGE UPS SYSTEMS UTalk protocol equipment
-sys-power/nut:ups_drivers_microdowell - Driver for Microdowell Enterprise UPS series
-sys-power/nut:ups_drivers_netxml-ups - Driver for Eaton / MGE Network Management Card / Proxy (XML/HTTP Protocol) equipment
-sys-power/nut:ups_drivers_nut-ipmipsu - Driver for IPMI Power Supply Units (PSU)
-sys-power/nut:ups_drivers_nutdrv_qx - Driver for Q* protocol serial and USB based UPS equipment
-sys-power/nut:ups_drivers_oldmge-shut - Driver for SHUT Protocol UPS equipment (older implementation)
-sys-power/nut:ups_drivers_oneac - Driver for Oneac UPS equipment
-sys-power/nut:ups_drivers_optiups - Driver for Opti-UPS (Viewsonic) UPS and Zinto D (ONLINE-USV) equipment
-sys-power/nut:ups_drivers_powercom - UPS driver for serial Powercom/Trust/Advice UPS equipment
-sys-power/nut:ups_drivers_powerpanel - Driver for PowerPanel Plus compatible UPS equipment
-sys-power/nut:ups_drivers_rhino - Driver for Brazilian Microsol RHINO UPS equipment
-sys-power/nut:ups_drivers_richcomm_usb - Driver UPS equipment using Richcomm dry-contact to USB solution
-sys-power/nut:ups_drivers_riello_ser - Driver for Riello UPS Protocol UPS equipment
-sys-power/nut:ups_drivers_riello_usb - Driver for Riello UPS Protocol UPS equipment via USB
-sys-power/nut:ups_drivers_safenet - Driver for SafeNet compatible UPS equipment
-sys-power/nut:ups_drivers_snmp-ups - Multi-MIB Driver for SNMP UPS equipment
-sys-power/nut:ups_drivers_solis - Driver for Brazilian Microsol SOLIS UPS equipment
-sys-power/nut:ups_drivers_tripplite - Driver for Tripp-Lite SmartPro UPS equipment
-sys-power/nut:ups_drivers_tripplite_usb - Driver for older Tripp Lite USB UPSes (not PDC HID)
-sys-power/nut:ups_drivers_tripplitesu - Driver for Tripp-Lite SmartOnline (SU) UPS equipment
-sys-power/nut:ups_drivers_upscode2 - Driver for UPScode II compatible UPS equipment
-sys-power/nut:ups_drivers_usbhid-ups - Driver for USB/HID UPS equipment
-sys-power/nut:ups_drivers_victronups - Driver for IMV/Victron UPS unit Match, Match Lite, NetUps
 sys-power/nut:usb - Includes all UPS drivers that use USB.
 sys-power/nut:xml - Includes all UPS drivers that use XML.
 sys-power/nvclock:gtk - Install the GTK+ based graphical interface
@@ -8681,6 +8642,9 @@ www-client/chromium:system-png - Use system media-libs/libpng instead of the bun
 www-client/chromium:system-toolchain - Use system toolchain instead of the bundled one (if possible)
 www-client/chromium:system-zstd - Use system app-arch/zstd instead of the bundled one.
 www-client/chromium:widevine - Unsupported closed-source DRM capability (required by Netflix VOD)
+www-client/dillo:mbedtls - Build against the net-libs/mbedtls library for TLS support.
+www-client/dillo:openssl - Build against the dev-libs/openssl library for TLS support.
+www-client/dillo:xembed - Enable XEmbed protocol support
 www-client/elinks:bittorrent - Enable support for the BitTorrent protocol
 www-client/elinks:finger - Enable support for the finger protocol
 www-client/elinks:gopher - Enable support for the gopher protocol
@@ -8725,6 +8689,7 @@ www-client/netsurf:psl - Use public suffix list from media-libs/libnspsl to dete
 www-client/netsurf:rosprite - RISC OS Sprite bitmap image support via media-libs/librosprite
 www-client/netsurf:svgtiny - Use media-libs/libsvgtiny instead of gnome-base/librsvg for SVG support
 www-client/netsurf:truetype - Use media-libs/freetype for text in the framebuffer frontend
+www-client/opera:ffmpeg-chromium - Use Chromium FFmpeg fork (media-video/ffmpeg-chromium) rather than mainline FFmpeg (media-video/ffmpeg)
 www-client/opera:proprietary-codecs - Enable codecs for patent-encumbered audio and video formats.
 www-client/opera-beta:ffmpeg-chromium - Use Chromium FFmpeg fork (media-video/ffmpeg-chromium) rather than mainline FFmpeg (media-video/ffmpeg)
 www-client/opera-beta:proprietary-codecs - Enable codecs for patent-encumbered audio and video formats.
@@ -8818,7 +8783,6 @@ www-servers/tomcat:extra-webapps - Build also the docs and examples webapp
 www-servers/uwsgi:embedded - Embed plugins instead of building them as real plugins. When disabling this USE flag make sure you specify all used plugins in your uWSGI configuration. Note: Language plugins will always be built as real plugins.
 www-servers/uwsgi:go - Build the gccgo plugin to run Go applications.
 www-servers/uwsgi:json - Support json as a configuration file format.
-www-servers/uwsgi:python-asyncio - Use the EXPERIMENTAL asyncio (tulip) for python3.4 async request dispatching and as LoopEngine (see http://uwsgi-docs.readthedocs.org/en/latest/asyncio.html).
 www-servers/uwsgi:routing - Enable routing support
 www-servers/uwsgi:yajl - Use dev-libs/yajl instead of dev-libs/jansson for parsing JSON configuration files (if USe=json is set)
 www-servers/uwsgi:yaml - Support yaml as a configuration file format.
@@ -8845,7 +8809,7 @@ x11-base/xorg-server:xvfb - Build the Xvfb server
 x11-base/xwayland:libei - Enable emulated input using dev-libs/libei
 x11-base/xwayland:unwind - Enable libunwind usage for backtraces
 x11-base/xwayland:xcsecurity - Build Security extension
-x11-drivers/nvidia-drivers:kernel-open - Use the open source variant of drivers (Turing/Ampere+ GPUs only, aka GTX 1650+, experimental)
+x11-drivers/nvidia-drivers:kernel-open - Use the open source variant of the drivers (Turing/Ampere+ GPUs only, aka GTX 1650+)
 x11-drivers/nvidia-drivers:persistenced - Install the persistence daemon for keeping devices state when unused (e.g. for headless)
 x11-drivers/nvidia-drivers:powerd - Install the NVIDIA dynamic boost support daemon (only useful with specific laptops, ignore if unsure)
 x11-drivers/nvidia-drivers:static-libs - Install the XNVCtrl static library for accessing sensors and other features
@@ -8917,6 +8881,7 @@ x11-misc/i3blocks:contrib - Install contrib modules
 x11-misc/i3status:filecaps - Linux capabilities library is required for i3status to be able to read net bandwidth
 x11-misc/j4-dmenu-desktop:dmenu - Use x11-misc/dmenu as default. Disable to use a different implementation.
 x11-misc/ktsuss:sudo - Use the sudo backend instead the su one
+x11-misc/libinput-gestures:experimental - avoid producing zombie processes
 x11-misc/light-locker:dpms - Turn on the display on screensaver deactivation.
 x11-misc/light-locker:screensaver - Lock the screen on screensaver activation.
 x11-misc/lightdm:gtk - Pull in the gtk+ greeter

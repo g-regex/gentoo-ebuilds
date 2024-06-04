@@ -33,6 +33,12 @@ python_test() {
 		pyfakefs/pytest_tests/pytest_fixture_test.py
 	)
 
+	if ! has_version "dev-python/pandas[${PYTHON_USEDEP}]"; then
+		EPYTEST_IGNORE+=(
+			pyfakefs/pytest_tests/pytest_reload_pandas_test.py
+		)
+	fi
+
 	local -x PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
 	epytest -p pyfakefs.pytest_plugin
 }
