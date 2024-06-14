@@ -14,7 +14,7 @@ SRC_URI+="
 "
 
 if [[ ${QT6_BUILD_TYPE} == release ]]; then
-	KEYWORDS="amd64 ~arm64"
+	KEYWORDS="amd64 arm64"
 fi
 
 IUSE="
@@ -86,6 +86,7 @@ DEPEND="
 	x11-libs/libXcursor
 	x11-libs/libXi
 	x11-libs/libxshmfence
+	opengl? ( media-libs/libglvnd[X] )
 	screencast? ( media-libs/libepoxy[egl(+)] )
 	pdfium? ( net-print/cups )
 	test? (

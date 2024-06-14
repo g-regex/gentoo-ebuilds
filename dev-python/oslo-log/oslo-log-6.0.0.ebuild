@@ -6,7 +6,7 @@ EAPI=8
 DISTUTILS_USE_PEP517=setuptools
 PYPI_NO_NORMALIZE=1
 PYPI_PN=${PN/-/.}
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{10..13} )
 
 inherit distutils-r1 pypi
 
@@ -19,7 +19,7 @@ HOMEPAGE="
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~arm64 ~riscv ~x86"
+KEYWORDS="amd64 ~arm arm64 ~riscv x86"
 
 RDEPEND="
 	>=dev-python/pbr-3.1.1[${PYTHON_USEDEP}]
@@ -43,6 +43,12 @@ distutils_enable_tests unittest
 distutils_enable_sphinx doc/source \
 	dev-python/openstackdocstheme \
 	dev-python/oslo-config
+
+PATCHES=(
+	# https://review.opendev.org/c/openstack/oslo.log/+/921797
+	# https://review.opendev.org/c/openstack/oslo.log/+/921798
+	"${FILESDIR}/${P}-py313.patch"
+)
 
 src_test() {
 	# requires eventlet
