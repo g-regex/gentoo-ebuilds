@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit dist-kernel-utils linux-info mount-boot savedconfig multiprocessing
+inherit dist-kernel-utils linux-info mount-boot savedconfig
 
 # In case this is a real snapshot, fill in commit below.
 # For normal, tagged releases, leave blank
@@ -84,7 +84,15 @@ pkg_setup() {
 }
 
 pkg_pretend() {
-	use initramfs && mount-boot_pkg_pretend
+	if use initramfs; then
+		if [[ -z ${ROOT} ]] && use dist-kernel; then
+			# Check, but don't die because we can fix the problem and then
+			# emerge --config ... to re-run installation.
+			nonfatal mount-boot_check_status
+		else
+			mount-boot_pkg_pretend
+		fi
+	fi
 }
 
 src_unpack() {
@@ -263,7 +271,17 @@ src_prepare() {
 }
 
 src_install() {
-	./copy-firmware.sh $(usex deduplicate '' '--ignore-duplicates') -v "${ED}/lib/firmware" || die
+
+	local FW_OPTIONS=( "-v" )
+
+	if use compress-xz; then
+		FW_OPTIONS+=( "--xz" )
+	elif use compress-zstd; then
+		FW_OPTIONS+=( "--zstd" )
+	fi
+	! use deduplicate && FW_OPTIONS+=( "--ignore-duplicates" )
+	FW_OPTIONS+=( "${ED}/lib/firmware" )
+	./copy-firmware.sh "${FW_OPTIONS[@]}" || die
 
 	pushd "${ED}/lib/firmware" &>/dev/null || die
 
@@ -309,36 +327,6 @@ src_install() {
 	find * ! -type d >> "${S}"/${PN}.conf || die
 	save_config "${S}"/${PN}.conf
 
-	if use compress-xz || use compress-zstd; then
-		einfo "Compressing firmware ..."
-		local target
-		local ext
-		local compressor
-
-		if use compress-xz; then
-			ext=xz
-			compressor="xz -T1 -C crc32"
-		elif use compress-zstd; then
-			ext=zst
-			compressor="zstd -15 -T1 -C -q --rm"
-		fi
-
-		# rename symlinks
-		while IFS= read -r -d '' f; do
-			# skip symlinks pointing to directories
-			[[ -d ${f} ]] && continue
-
-			target=$(readlink "${f}")
-			[[ $? -eq 0 ]] || die
-			ln -sf "${target}".${ext} "${f}" || die
-			mv -T "${f}" "${f}".${ext} || die
-		done < <(find . -type l -print0) || die
-
-		find . -type f ! -path "./amd-ucode/*" -print0 | \
-			xargs -0 -P $(makeopts_jobs) -I'{}' ${compressor} '{}' || die
-
-	fi
-
 	popd &>/dev/null || die
 
 	# Instruct Dracut on whether or not we want the microcode in initramfs
@@ -375,7 +363,7 @@ pkg_preinst() {
 	fi
 
 	# Make sure /boot is available if needed.
-	use initramfs && mount-boot_pkg_preinst
+	use initramfs && ! use dist-kernel && mount-boot_pkg_preinst
 }
 
 pkg_postinst() {
@@ -393,21 +381,22 @@ pkg_postinst() {
 		fi
 	done
 
-	# Don't forget to umount /boot if it was previously mounted by us.
 	if use initramfs; then
 		if [[ -z ${ROOT} ]] && use dist-kernel; then
 			dist-kernel_reinstall_initramfs "${KV_DIR}" "${KV_FULL}"
+		else
+			# Don't forget to umount /boot if it was previously mounted by us.
+			mount-boot_pkg_postinst
 		fi
-		mount-boot_pkg_postinst
 	fi
 }
 
 pkg_prerm() {
 	# Make sure /boot is mounted so that we can remove /boot/amd-uc.img!
-	use initramfs && mount-boot_pkg_prerm
+	use initramfs && ! use dist-kernel && mount-boot_pkg_prerm
 }
 
 pkg_postrm() {
 	# Don't forget to umount /boot if it was previously mounted by us.
-	use initramfs && mount-boot_pkg_postrm
+	use initramfs && ! use dist-kernel && mount-boot_pkg_postrm
 }
