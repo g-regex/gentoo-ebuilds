@@ -12,7 +12,7 @@ DESCRIPTION="Libary for handling mail messages and newsgroup articles"
 
 LICENSE="GPL-2+"
 SLOT="6"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~arm64"
 IUSE=""
 
 DEPEND="
@@ -20,3 +20,8 @@ DEPEND="
 	>=kde-frameworks/ki18n-${KFMIN}:6
 "
 RDEPEND="${DEPEND}"
+
+CMAKE_SKIP_TESTS=(
+	# bug 924507
+	kmime-{header,message}test
+)
