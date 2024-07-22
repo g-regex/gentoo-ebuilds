@@ -800,7 +800,7 @@ app-i18n/fcitx-lua:dlopen - Use dlopen to load lua library
 app-i18n/fcitx-qt:onlyplugin - Build only plugin
 app-i18n/fcitx-qt:qt6 - Build support for QT6
 app-i18n/fcitx-qt:staticplugin - Build plugin as static
-app-i18n/fcitx-rime:configuration_tool - Install configuration tool
+app-i18n/fcitx-rime:configuration-tool - Install configuration tool
 app-i18n/fcitx-unikey:macro-editor - Install macro editor
 app-i18n/freewnn:uum - Build uum
 app-i18n/ibus:emoji - Enable support for Emoji
@@ -904,7 +904,6 @@ app-misc/lcd4linux:button-exec - Enable the Button plugin, to execute something 
 app-misc/lcd4linux:cpuinfo - Enable the cpuinfo plugin.
 app-misc/lcd4linux:dbus - Enable the dbus plugin.
 app-misc/lcd4linux:diskstats - Enable the diskstats plugin.
-app-misc/lcd4linux:dmalloc - Enable dmalloc for debugging.
 app-misc/lcd4linux:dvb - Enable support for the DVB plugin.
 app-misc/lcd4linux:event - Enable the event plugin.
 app-misc/lcd4linux:exec - Enable the exec plugin, to read output from external programs.
@@ -1287,7 +1286,7 @@ app-text/wv:tools - Install optional utilities considered deprecated in favor of
 app-text/xmlto:text - Support conversion from XML to plain text
 app-text/xpdf:cmyk - Include support for CMYK rasterization
 app-text/xpdf:i18n - Enable support non-UTF8 national charsets
-app-text/xpdf:icons - Generate desktop PNG icons using media-gfx/inkscape
+app-text/xpdf:icons - Generate desktop PNG icons using rsvg-convert from gnome-base/librsvg
 app-text/xpdf:libpaper - Use app-text/libpaper to get paper preferences
 app-text/xpdf:metric - Use A4 instead of US Letter paper size by default for PostScript output. This option has effect only if libpaper USE flag is disabled
 app-text/xpdf:opi - Include support for OPI (Open Prepress Interface) comments
@@ -2275,8 +2274,6 @@ dev-libs/weston:resize-optimization - Increase performance, allocate more RAM. R
 dev-libs/weston:screen-sharing - Enable screen-sharing through RDP
 dev-libs/weston:wayland-compositor - Enable Wayland compositor support
 dev-libs/weston:xwayland - Enable ability support native X11 applications
-dev-libs/xapian:inmemory - Enabled inmemory backend db support
-dev-libs/xapian:remote - Enabled remote backend db support
 dev-libs/xerces-c:iconv - Use iconv (virtual/libiconv) as message loader and transcoder (in general it would be possible to use iconv only as message loader and something else like icu or the native method as transcoder and vice-versa, but this is a less common case and hard to handle)
 dev-libs/xerces-c:threads - Enable threading support through pthread (or other libraries on AIX, IRIX, HPUX, Solars). Highly recommended
 dev-libs/xmlrpc-c:abyss - Build the Abyss mini web-server.
@@ -3157,6 +3154,7 @@ games-emulation/mupen64plus:ui-m64py - Enable PyQt5 UI using games-emulation/m64
 games-emulation/mupen64plus:video-glide64mk2 - Enable Glide64mk2 video plugin.
 games-emulation/mupen64plus:video-rice - Enable Rice video plugin.
 games-emulation/mupen64plus-core:debugger - Build the debugger
+games-emulation/mupen64plus-core:netplay - Enable netplay functionality
 games-emulation/mupen64plus-core:new-dynarec - Enable new experimental dynamic recompiler implementation (only for x86 and arm)
 games-emulation/mupen64plus-core:opencv - Support video capture via media-libs/opencv
 games-emulation/mupen64plus-core:osd - Overlay emulator messages using on-screen-display
@@ -3164,6 +3162,10 @@ games-emulation/mupen64plus-video-glide64mk2:hires - Support hi-resolution textu
 games-emulation/pcsx2:clang - Use Clang compiler to build (the only compiler that is currently supported by upstream on Linux, do not report bugs if force-disabled)
 games-emulation/pcsx2:sndio - Enable support for the media-sound/sndio backend
 games-emulation/ppsspp:discord - Enable interfacing with a locally running Discord desktop client
+games-emulation/rmg:angrylion-plugin - Enable the mupen64plus-video-angrylion-plus XMAME licensed plugin
+games-emulation/rmg:discord - Enable Discord RPC support
+games-emulation/rmg:dynarec - Enable the new dynarec for the mupen64plus-core plugin
+games-emulation/rmg:rust-plugin - Enable the mupen64plus-input-gca rust plugin
 games-emulation/snes9x:libretro - Build libretro port
 games-emulation/snes9x:netplay - Enable playing ROMs over the network (not recommended)
 games-emulation/vbam:link - Enable GBA linking functionality
@@ -4093,7 +4095,6 @@ media-gfx/darktable:tools - Install tools for generating base curves and noise p
 media-gfx/digikam:addressbook - Enable akonadi contact integration
 media-gfx/digikam:imagemagick - Enable support for additional image formats such as XCF, FITS, HEIC etc.
 media-gfx/digikam:lensfun - Enable support for media-libs/lensfun
-media-gfx/digikam:mediaplayer - Enable integrated video player
 media-gfx/digikam:panorama - Build the panorama plugin which requires media-gfx/hugin
 media-gfx/digikam:semantic-desktop - Enable kde-frameworks/kfilemetadata support
 media-gfx/eog-plugins:map - Enable world map display using media-libs/libchamplain
@@ -4342,6 +4343,7 @@ media-libs/libheif:aom - Use media-libs/libaom for AVIF encoding/decoding
 media-libs/libheif:gdk-pixbuf - Enable x11-libs/gdk-pixbuf plugin
 media-libs/libheif:go - Enable building dev-lang/go code/examples
 media-libs/libheif:rav1e - Use media-video/rav1e for AVIF encoding
+media-libs/libheif:svt-av1 - Use media-libs/svt-av1 for SVT-AV1 encoding
 media-libs/libheif:x265 - Use media-libs/x265 for HEIF encoding
 media-libs/libjxl:gdk-pixbuf - Build a gdk-pixbuf loader.
 media-libs/libjxl:jpeg - Enable full support for JPEG images. When disabled, only lossless conversion between JPEG and JPEG-XL is supported.
@@ -6040,6 +6042,7 @@ net-libs/freaklabs-chibiarduino:promisc - Enable promisc in the config file for 
 net-libs/glib-networking:gnome - Extract HTTP/HTTPS/SOCKS proxy configuration stored using GSettings
 net-libs/glib-networking:libproxy - Use net-libs/libproxy for getting the HTTP/HTTPS/SOCKS proxy configuration
 net-libs/gnome-online-accounts:gnome - Use gnome-base/gnome-control-center to set GNOME online accounts preferences
+net-libs/gnome-online-accounts:ms365 - Enable Microsoft 365 provider
 net-libs/gnutls:dane - Build libgnutls-dane, implementing DNS-based Authentication of Named Entities. Requires net-dns/unbound
 net-libs/gnutls:openssl - Build openssl compatibility libraries
 net-libs/gnutls:pkcs11 - Add support for PKCS#11 through app-crypt/p11-kit
@@ -7093,8 +7096,6 @@ sci-astronomy/cpl:gasgano - Enable support for sci-astronomy/gasgano file organi
 sci-astronomy/esomidas:libtirpc - Build against net-libs/libtirpc for RPC support
 sci-astronomy/kstars:password - Store passwords securely via dev-libs/qtkeychain
 sci-astronomy/kstars:wcs - Enable support for World Coordinate System library using wcslib
-sci-astronomy/predict:xforms - Add a "map" client which uses the x11-libs/xforms library for its GUI
-sci-astronomy/predict:xplanet - Project predict data onto world maps generated by x11-misc/xplanet / x11-misc/xearth
 sci-astronomy/psfex:plplot - Build with sci-libs/plplot to allow diagnostic plots during processing
 sci-astronomy/scamp:plplot - Build with sci-libs/plplot to allow diagnostic plots during processing
 sci-astronomy/sextractor:modelfit - Enable profile model fitting, needs sci-libs/atlas and sci-libs/fftw
@@ -7198,6 +7199,7 @@ sci-geosciences/gpsd:sockets - export gpsd over unix sockets
 sci-geosciences/grass:geos - Use sci-libs/geos for v.buffer and adds extended options to the v.select module
 sci-geosciences/grass:las - Include support for LAS and LAZ encoded LiDAR files through sci-geosciences/liblas
 sci-geosciences/grass:pdal - Enable support for PDAL for point clouds via sci-libs/pdal
+sci-geosciences/grass:svm - Enable support for the Support Vector Machine library sci-libs/libsvm
 sci-geosciences/gshhs:data - Add earth data with sci-geosciences/gshhs-data
 sci-geosciences/liblas:gdal - Add support for the sci-libs/gdal geospatial raster library
 sci-geosciences/mapserver:apache - Enable mapserver to run under apache
@@ -7887,6 +7889,12 @@ sys-apps/openrc:newnet - enable the new network stack (experimental)
 sys-apps/openrc:s6 - install s6-linux-init
 sys-apps/openrc:sysv-utils - Install sysvinit compatibility scripts for halt, init, poweroff, reboot and shutdown
 sys-apps/openrc:sysvinit - control the dependency on sysvinit (experimental)
+sys-apps/openrc-navi:bash - enable the use of bash in service scripts (experimental)
+sys-apps/openrc-navi:netifrc - enable Gentoo's network stack (net.* scripts)
+sys-apps/openrc-navi:newnet - enable the new network stack (experimental)
+sys-apps/openrc-navi:s6 - install s6-linux-init
+sys-apps/openrc-navi:sysv-utils - Install sysvinit compatibility scripts for halt, init, poweroff, reboot and shutdown
+sys-apps/openrc-navi:sysvinit - control the dependency on sysvinit (experimental)
 sys-apps/pciutils:dns - Enable support for querying the central database of PCI IDs using DNS
 sys-apps/pciutils:kmod - Enable sys-apps/kmod support for the -k switch in lspci command
 sys-apps/pciutils:zlib - Support compressed pci.ids database
@@ -8366,12 +8374,13 @@ sys-kernel/gentoo-kernel:initramfs - Build initramfs along with the kernel.
 sys-kernel/gentoo-kernel-bin:generic-uki - Install a prebuilt generic initramfs and Unified Kernel Image (EXPERIMENTAL).
 sys-kernel/gentoo-kernel-bin:initramfs - Build initramfs along with the kernel.
 sys-kernel/gentoo-sources:experimental - Apply experimental patches; for more information, see "https://wiki.gentoo.org/wiki/Project:Kernel/Experimental".
-sys-kernel/installkernel:dracut - Generate an initrd or UKI on each kernel installation
+sys-kernel/installkernel:dracut - Generate an initramfs or UKI on each kernel installation
 sys-kernel/installkernel:efistub - EXPERIMENTAL: Update UEFI configuration on each kernel installation
 sys-kernel/installkernel:grub - Re-generate grub.cfg on each kernel installation, used grub.cfg is overridable with GRUB_CFG env var
 sys-kernel/installkernel:refind - Install a Gentoo icon for rEFInd alongside the (unified) kernel image, used icon is overridable with REFIND_ICON env var
 sys-kernel/installkernel:systemd - Use systemd's kernel-install to install kernels, overridable with SYSTEMD_KERNEL_INSTALL env var
 sys-kernel/installkernel:systemd-boot - Use systemd-boot's native layout by default
+sys-kernel/installkernel:ugrd - Generate an initramfs using UGRD on each kernel installation
 sys-kernel/installkernel:uki - Install UKIs to ESP/EFI/Linux for EFI stub booting and/or bootloaders with support for auto-discovering UKIs
 sys-kernel/installkernel:ukify - Build an UKI with systemd's ukify on each kernel installation
 sys-kernel/kpatch:contrib - Enable contrib kpatch services files.
