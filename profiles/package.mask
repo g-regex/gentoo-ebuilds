@@ -33,6 +33,22 @@
 
 #--- END OF EXAMPLES ---
 
+# Michael Orlitzky <mjo@gentoo.org> (2024-08-03)
+# Unmaintained package. Upstream is not quite _dead_, but the project
+# domain (where tarballs and documentation were hosted) was hijacked in
+# 2022 and nothing has been done about it. As a result, the version in
+# Gentoo is far out of date. Four open bugs, no interest. Removal on
+# or after 2024-09-03.
+acct-group/monkeyd
+acct-user/monkeyd
+www-servers/monkeyd
+
+# Sam James <sam@gentoo.org> (2024-08-02)
+# Unreliable software, unmaintained in Gentoo. Having it in the main
+# repositories may give users an impression of it being a safe tool.
+# Removal on 2024-09-01.
+app-backup/mkstage4
+
 # James Le Cuirot <chewi@gentoo.org> (2024-07-29)
 # Superseded by media-libs/libv4l[utils].
 # Removal on 2024-08-29. Bug #936674.
@@ -229,11 +245,6 @@ sci-astronomy/esomidas
 # The symbol versioning "fix" breaks anything built with 3.0.0.
 =dev-libs/libassuan-3.0.1
 
-# Hans de Graaff <graaff@gentoo.org> (2024-06-21)
-# Obsolete slot. Please use a newer slot instead.
-# Masked for removal on 2024-07-21.
-dev-ruby/public_suffix:4
-
 # Cédric Krier <cedk@gentoo.org> (2023-06-15)
 # critical regression with potential data loss:
 # https://lists.mercurial-scm.org/pipermail/mercurial-devel/2024-June/297954.html
@@ -385,11 +396,6 @@ sec-keys/openpgp-keys-jiatan
 # Eray Aslan <eras@gentoo.org> (2024-03-10)
 # Mask experimental software
 =mail-mta/postfix-3.10*
-
-# Ulrich Müller <ulm@gentoo.org> (2024-02-08)
-# Masked for testing.
-# Test failure in watchpoints.dem, undefined function FresnelC.
-~sci-visualization/gnuplot-6.0.0
 
 # Sam James <sam@gentoo.org> (2023-12-14)
 # Gentoo's kernel maintainers have decided to discontinue gentoo-sources and
