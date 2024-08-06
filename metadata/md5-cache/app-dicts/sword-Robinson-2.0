@@ -1,0 +1,12 @@
+DEFINED_PHASES=install
+DEPEND=app-arch/unzip
+DESCRIPTION=Robinson's Morphological Analysis Codes
+EAPI=7
+HOMEPAGE=https://crosswire.org/sword/modules/ModInfo.jsp?modName=Robinson
+KEYWORDS=~amd64 ~ppc ~x86
+LICENSE=CC-BY-SA-3.0
+RDEPEND=app-text/sword
+SLOT=0
+SRC_URI=mirror://gentoo/Robinson-2.0.zip
+_eclasses_=sword-module	95addfe6ccec3bab4c085d831594fa26
+_md5_=a814389fc21a62e0fd164a0564c66cd3

@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure install prepare
+DEPEND=dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtnetwork:5 dev-qt/qtxml:5
+DESCRIPTION=Library for Qt that implements the OAuth 1.0 authentication specification
+EAPI=6
+HOMEPAGE=https://github.com/kypeli/kQOAuth
+KEYWORDS=~amd64 ~x86
+LICENSE=LGPL-2.1
+RDEPEND=dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtnetwork:5 dev-qt/qtxml:5
+SLOT=0
+SRC_URI=https://github.com/kypeli/kQOAuth/archive/0.98.tar.gz -> kqoauth-0.98.tar.gz
+_eclasses_=estack	43ddf5aaffa7a8d0482df54d25a66a1f	multilib	1d91b03d42ab6308b5f4f6b598ed110e	qmake-utils	bdf97e69a34b864d6d545f4ec3143ff7	toolchain-funcs	2f8b8f320bee13b71a8a54cc6d09e08a
+_md5_=563c64abfd3392af07e4812b5cad1307

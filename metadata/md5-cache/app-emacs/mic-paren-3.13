@@ -1,0 +1,13 @@
+BDEPEND=>=app-editors/emacs-25.3:*
+DEFINED_PHASES=compile configure install postinst postrm prepare setup test unpack
+DESCRIPTION=Advanced highlighting of matching parentheses
+EAPI=7
+HOMEPAGE=https://www.gnuvola.org/software/j/mic-paren/ https://www.emacswiki.org/emacs/MicParen
+INHERIT=elisp
+KEYWORDS=amd64 x86
+LICENSE=GPL-3+
+RDEPEND=>=app-editors/emacs-25.3:*
+SLOT=0
+SRC_URI=https://dev.gentoo.org/~ulm/distfiles/mic-paren-3.13.el.xz
+_eclasses_=elisp	7190c722d9e06fabcae26ef1e1dc9183	elisp-common	01bc6dc778b74a9deebe4e419a3b790e
+_md5_=e1519b2765a9160347b1a02d9b3183b3

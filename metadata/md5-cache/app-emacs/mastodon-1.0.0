@@ -1,0 +1,13 @@
+BDEPEND=app-emacs/request >=app-editors/emacs-27.1:*
+DEFINED_PHASES=compile configure install postinst postrm prepare setup test unpack
+DESCRIPTION=Emacs client for Mastodon, federated microblogging social network
+EAPI=8
+HOMEPAGE=https://codeberg.org/martianh/mastodon.el/
+INHERIT=elisp
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3+
+RDEPEND=app-emacs/request >=app-editors/emacs-27.1:*
+SLOT=0
+SRC_URI=https://codeberg.org/martianh/mastodon.el/archive/1.0.0.tar.gz -> mastodon-1.0.0.tar.gz
+_eclasses_=elisp	7190c722d9e06fabcae26ef1e1dc9183	elisp-common	01bc6dc778b74a9deebe4e419a3b790e
+_md5_=49262fd39368ac5dd6eca944a0e974e7
