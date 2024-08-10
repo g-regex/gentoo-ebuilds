@@ -1924,12 +1924,30 @@ toolchain_src_test() {
 
 	# Use a subshell to allow meddling with flags just for the testsuite
 	(
+		# Unexpected warnings confuse the tests.
+		filter-flags -W*
+		# May break parsing.
+		filter-flags '-fdiagnostics-color=*' '-fdiagnostics-urls=*'
+		# Gentoo QA flags which don't belong in tests
+		filter-flags -frecord-gcc-switches
+		filter-flags '-Wl,--defsym=__gentoo_check_ldflags__=0'
+		# Go doesn't support this and causes noisy warnings
+		filter-flags -Wbuiltin-declaration-mismatch
+		# The ASAN tests at least need LD_PRELOAD and the contract
+		# tests.
+		filter-flags -fno-semantic-interposition
+
 		# Workaround our -Wformat-security default which breaks
 		# various tests as it adds unexpected warning output.
 		append-flags -Wno-format-security -Wno-format
 		# Workaround our -Wtrampolines default which breaks
 		# tests too.
 		append-flags -Wno-trampolines
+		# A handful of Ada (and objc++?) tests need an executable stack
+		append-ldflags -Wl,--no-warn-execstack
+		# Avoid confusing tests like Fortran/C interop ones where
+		# CFLAGS are used.
+		append-flags -Wno-complain-wrong-lang
 
 		# Issues with Ada tests:
 		# gnat.dg/align_max.adb
@@ -1941,31 +1959,40 @@ toolchain_src_test() {
 		# TODO: This isn't ideal given it obv. affects codegen
 		# and we want to be sure it works.
 		append-flags -fno-stack-clash-protection
-		# A handful of Ada (and objc++?) tests need an executable stack
-		append-ldflags -Wl,--no-warn-execstack
 
-		# Go doesn't support this and causes noisy warnings
-		filter-flags -Wbuiltin-declaration-mismatch
+		# configure defaults to '-O2 -g' and some tests expect it
+		# accordingly.
+		append-flags -g
 
 		# TODO: Does this handle s390 (-m31) correctly?
-		is_multilib && GCC_TESTS_RUNTESTFLAGS+=" --target_board=unix\{,-m32\}"
-
-		GCC_TESTS_RUNTESTFLAGS=(
-			"${GCC_TESTS_RUNTESTFLAGS}"
-                        CFLAGS_FOR_TARGET="${CFLAGS_FOR_TARGET:-${CFLAGS}}"
-                        CXXFLAGS_FOR_TARGET="${CXXFLAGS_FOR_TARGET:-${CXXFLAGS}}"
-                        LDFLAGS_FOR_TARGET="${LDFLAGS_FOR_TARGET:-${LDFLAGS}}"
-                        CFLAGS="${CFLAGS}"
-                        CXXFLAGS="${CXXFLAGS}"
-                        FCFLAGS="${FCFLAGS}"
-                        FFLAGS="${FFLAGS}"
-                        LDFLAGS="${LDFLAGS}"
-		)
+		# TODO: What if there are multiple ABIs like x32 too?
+		is_multilib && GCC_TESTS_RUNTESTFLAGS+=" --target_board=unix{,-m32}"
 
 		# nonfatal here as we die if the comparison below fails. Also, note that
 		# the exit code of targets other than 'check' may be unreliable.
+		#
+		# CFLAGS and so on are repeated here because of tests vs building test
+		# deps like libbacktrace.
 		nonfatal emake -C "${WORKDIR}"/build -k "${GCC_TESTS_CHECK_TARGET}" \
-			RUNTESTFLAGS="${GCC_TESTS_RUNTESTFLAGS[*]}"
+			RUNTESTFLAGS=" \
+				${GCC_TESTS_RUNTESTFLAGS} \
+				CFLAGS_FOR_TARGET='${CFLAGS_FOR_TARGET:-${CFLAGS}}' \
+				CXXFLAGS_FOR_TARGET='${CXXFLAGS_FOR_TARGET:-${CXXFLAGS}}' \
+				LDFLAGS_FOR_TARGET='${LDFLAGS_FOR_TARGET:-${LDFLAGS}}' \
+				CFLAGS='${CFLAGS}' \
+				CXXFLAGS='${CXXFLAGS}' \
+				FCFLAGS='${FCFLAGS}' \
+				FFLAGS='${FFLAGS}' \
+				LDFLAGS='${LDFLAGS}' \
+			" \
+			CFLAGS_FOR_TARGET="${CFLAGS_FOR_TARGET:-${CFLAGS}}" \
+			CXXFLAGS_FOR_TARGET="${CXXFLAGS_FOR_TARGET:-${CXXFLAGS}}" \
+			LDFLAGS_FOR_TARGET="${LDFLAGS_FOR_TARGET:-${LDFLAGS}}" \
+			CFLAGS="${CFLAGS}" \
+			CXXFLAGS="${CXXFLAGS}" \
+			FCFLAGS="${FCFLAGS}" \
+			FFLAGS="${FFLAGS}" \
+			LDFLAGS="${LDFLAGS}"
 	)
 
 	# Produce an updated failure manifest.
