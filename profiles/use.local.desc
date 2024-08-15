@@ -3633,6 +3633,7 @@ kde-apps/parley:webengine - Build browser integration for the editor, requires d
 kde-apps/pimcommon:designer - Build plugins for dev-qt/designer
 kde-apps/spectacle:share - Enable support for a share menu using kde-frameworks/purpose
 kde-apps/step:qalculate - Enable the libqalculate library for unit conversion
+kde-apps/thumbnailers:blender - Enable blender thumbnail generation using kde-frameworks/karchive
 kde-apps/thumbnailers:mobi - Enable mobipocket thumbnail generation using kde-apps/kdegraphics-mobipocket
 kde-apps/umbrello:php - Enable PHP import support using dev-util/kdevelop and dev-util/kdevelop-pg-qt
 kde-apps/yakuake:absolute-position - Use kde-plasma/kwayland for absolute window positioning in KWin
@@ -5917,6 +5918,7 @@ net-im/toxic:sound - Enables audio calling
 net-im/toxic:video - Enables video calling
 net-im/zoom:bundled-qt - Use bundled Qt and icu instead of system-wide libs
 net-im/zoom:opencl - Use OpenCL for virtual background support (virtual/opencl)
+net-im/zoom:zoom-symlink - Install a zoom symlink in /usr/bin
 net-irc/anope:ldap - Build LDAP modules for e.g. opertypes
 net-irc/anope:sql - Build modules which require SQL
 net-irc/anope:ssl - Provide SSL services using OpenSSL
