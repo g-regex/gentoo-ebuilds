@@ -10,7 +10,7 @@ inherit ecm frameworks.kde.org
 DESCRIPTION="Framework to let applications perform actions as a privileged user"
 
 LICENSE="LGPL-2.1+"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
+KEYWORDS="amd64 arm64 ~ppc64 ~riscv ~x86"
 IUSE="+policykit"
 
 RDEPEND="
@@ -31,6 +31,8 @@ PDEPEND="policykit? ( kde-plasma/polkit-kde-agent:* )"
 CMAKE_SKIP_TESTS=(
 	# KAuthHelperTest test fails, bug 654842
 	KAuthHelperTest
+	# bug 938505
+	KAuthFdTest
 )
 
 src_configure() {
