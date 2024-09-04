@@ -250,10 +250,8 @@ app-arch/libarchive:blake2 - Enable Blake2 hash support via app-crypt/libb2.
 app-arch/libarchive:bzip2 - Allow accessing bzip2-compressed archives through libbz2 (which comes with app-arch/bzip2). This only affects libarchive's native support: bsdtar will keep using bunzip2 as a filter if that's not built-in.
 app-arch/libarchive:e2fsprogs - Use file flags from sys-fs/e2fsprogs headers instead of virtual/os-headers headers
 app-arch/libarchive:nettle - Use dev-libs/nettle as crypto backend
-app-arch/libdeflate:gzip - Support the gzip format
 app-arch/libdeflate:test - Build the test programs (requires sys-libs/zlib)
 app-arch/libdeflate:utils - Build the libdeflate-gzip program
-app-arch/libdeflate:zlib - Support the zlib format
 app-arch/lrzip-next:largefile - Enables support for large files
 app-arch/lrzip-next:year2038 - Enables support for 64-bit 'time_t' (sets D_TIME_BITS=64; glibc only)
 app-arch/p7zip:natspec - Use dev-libs/libnatspec to correctly decode non-ascii file names archived in Windows.
@@ -1473,6 +1471,7 @@ dev-debug/strace:aio - Enable dev-libs/libaio support for tracing Asynchronous I
 dev-debug/strace:elfutils - Enable stack backtraces (-k flag) via dev-libs/elfutils
 dev-debug/strace:unwind - Enable stack backtraces (-k flag) via sys-libs/libunwind
 dev-debug/sysdig:modules - Build kernel modules needed for tracing local events. Disable this only if you intend to use sysdig purely to work with dumpfiles.
+dev-debug/systemtap:debuginfod - Enable debuginfod support via dev-libs/elfutils libdebuginfod
 dev-debug/systemtap:libvirt - Support probing of libvirt domains.
 dev-embedded/avrdude:ftdi - Enable support for USB FTDI chips via dev-embedded/libftdi
 dev-embedded/libftdi:tools - build ftdi_eeprom helper tool
@@ -1586,6 +1585,7 @@ dev-games/physfs:wad - Enable Doom WAD archive support
 dev-games/simgear:dns - Enable DNS resolver via net-libs/udns
 dev-games/simgear:gdal - Enable alternative terrain engine based on pagedLOD via sci-libs/gdal
 dev-games/simgear:subversion - Enable terrasync scenery downloader
+dev-games/tiled:minimal - Exclude optional plugins and development headers
 dev-gap/grape:bliss - Use sci-libs/bliss instead of sci-mathematics/nauty as the backend.
 dev-haskell/abstract-deque:usecas - Enable the reference implementation to use hardware compare-and-swap.
 dev-haskell/aeson:cffi - Controls whether to include c-ffi bits or pure haskell. Default to False for security.
@@ -1923,7 +1923,6 @@ dev-lang/rust-bin:profiler - Build the profiler runtime and rust-demangler tool 
 dev-lang/rust-bin:rust-analyzer - Install rust-analyzer, A Rust compiler front-end for IDEs (language server)
 dev-lang/rust-bin:rust-src - Install rust-src, needed by developer tools and for build-std (cross)
 dev-lang/rust-bin:rustfmt - Install rustfmt, Rust code formatter
-dev-lang/scala:binary - Install from (Gentoo-compiled) binary instead of building from sources. Set this when you run out of memory during build.
 dev-lang/souffle:ffi - Support c++ functors with arbitrary number of arguments
 dev-lang/souffle:swig - Enable SWIG usage, needed for Java and Python bindings
 dev-lang/spidermonkey:clang - Use Clang compiler instead of GCC
@@ -2848,7 +2847,7 @@ dev-util/Tensile:client - Build and install tensile_client executable to run ben
 dev-util/babeltrace:elfutils - Build the dev-util/lttng-ust debug information filter component class
 dev-util/babeltrace:plugins - Build support for Babeltrace 2 Python plugins
 dev-util/bpftool:caps - Use sys-libs/libcap to enable unprivileged run support
-dev-util/bpftool:llvm - Use sys-devel/llvm
+dev-util/bpftool:llvm - Use sys-devel/llvm instead of libbfd (sys-libs/binutils-libs) for JIT disassembly
 dev-util/breakpad:tools - Build tools
 dev-util/buildbot:docker - Add support for worker docker command steps
 dev-util/buildbot:irc - Add support for status delivery through an ircbot.
@@ -2938,6 +2937,7 @@ dev-util/kcov:binutils - Use sys-libs/binutils-libs for `--verify` support
 dev-util/kdevelop:gdbui - Enable GUI for attaching GDB to a running process
 dev-util/kdevelop:hex - Enable hex editor plugin via app-editors/okteta
 dev-util/kdevelop:qmake - Enable support for QMake build system
+dev-util/kdevelop:share - Enable support for patch sharing using kde-frameworks/purpose
 dev-util/kernelshark:custom-optimization - Build with user-specified compiler optimizations (-Os, -O0, -O1, -O2, -O3) from CFLAGS
 dev-util/kup:gitolite - Enable support for dev-vcs/gitolite in kup-server
 dev-util/libabigail:btf - Handle reading kernel debug files in BTF format via dev-libs/libbpf
@@ -3078,7 +3078,6 @@ games-action/trine:launcher - Install GTK+ launcher
 games-action/trine-enchanted-edition:launcher - Install GTK+ launcher
 games-action/trine2:launcher - Install GTK+ launcher
 games-arcade/bomns:editor - enables building the level editor
-games-arcade/burgerspace:network - Enable client-server support
 games-arcade/commandergenius:downloader - Allows some Keen games to be downloaded from the menu
 games-arcade/jazz2:server - Build the multiplayer game server
 games-arcade/jazz2-data:cc - Install The Christmas Chronicles additional data
@@ -3559,7 +3558,6 @@ kde-apps/kde-apps-meta:sdk - Pull in developer-specific meta-packages
 kde-apps/kde-apps-meta:utils - Pull in kde-apps/kdeutils-meta packages
 kde-apps/kdeadmin-meta:cron - Installs KDE application for virtual/cron configuration
 kde-apps/kdecore-meta:share - Install kde-frameworks/purpose for share file context menu actions in kde-apps/dolphin
-kde-apps/kdecore-meta:thumbnail - Install kde-apps/ffmpegthumbs and kde-apps/thumbnailers for thumbnail generation in kde-apps/dolphin
 kde-apps/kdecore-meta:webengine - Enable www-client/falkon which depends on dev-qt/qtwebengine
 kde-apps/kdeedu-meta:webengine - Enable packages requiring dev-qt/qtwebengine
 kde-apps/kdegraphics-meta:color-management - Enable color management via media-libs/opencolorio
@@ -3609,7 +3607,6 @@ kde-apps/ksystemlog:kdesu - Run as root using kdesu from kde-plasma/kde-cli-tool
 kde-apps/ktouch:X - Enable support for X11 Keyboard Layout Detection
 kde-apps/kwave:qtmedia - Enable playback via Qt5Multimedia
 kde-apps/libkcddb:kf6compat - Disable components colliding with KF6, depend on KF6 components instead
-kde-apps/libkcompactdisc:kf6compat - Disable components colliding with KF6, depend on KF6 components instead
 kde-apps/libkdepim:designer - Build plugins for dev-qt/designer
 kde-apps/libkgapi:kf6compat - Disable components colliding with KF6, depend on KF6 components instead
 kde-apps/libkleo:fancyviewer - Use kde-apps/kpimtextedit for an improved audit log viewer
@@ -3637,7 +3634,9 @@ kde-apps/pimcommon:designer - Build plugins for dev-qt/designer
 kde-apps/spectacle:share - Enable support for a share menu using kde-frameworks/purpose
 kde-apps/step:qalculate - Enable the libqalculate library for unit conversion
 kde-apps/thumbnailers:blender - Enable blender thumbnail generation using kde-frameworks/karchive
+kde-apps/thumbnailers:gettext - Enable PO file thumbnail generation using kde-apps/kdesdk-thumbnailers
 kde-apps/thumbnailers:mobi - Enable mobipocket thumbnail generation using kde-apps/kdegraphics-mobipocket
+kde-apps/thumbnailers:video - Enable video thumbnail generation using kde-apps/ffmpegthumbs
 kde-apps/umbrello:php - Enable PHP import support using dev-util/kdevelop and dev-util/kdevelop-pg-qt
 kde-apps/yakuake:absolute-position - Use kde-plasma/kwayland for absolute window positioning in KWin
 kde-frameworks/baloo:kf6compat - Disable components colliding with KF6, depend on KF6 components instead
@@ -4538,7 +4537,6 @@ media-libs/x264:pic - disable optimized assembly code that is not PIC friendly
 media-libs/x265:10bit - Add support for producing 10bits HEVC.
 media-libs/x265:12bit - Add support for producing 12bits HEVC.
 media-libs/x265:numa - Build with support for NUMA nodes.
-media-libs/x265:pic - Disable optimized assembly code that is not PIC friendly
 media-libs/xine-lib:bluray - Enable playback of Blu-ray filesystems using media-libs/libbluray
 media-libs/xine-lib:dav1d - Enable support for media-libs/dav1d AV1 decoder
 media-libs/xine-lib:dxr3 - Enable support for DXR3 mpeg acceleration cards.
@@ -5204,8 +5202,9 @@ media-video/obs-studio:mpegts - Enable native SRT/RIST mpegts output.
 media-video/obs-studio:pipewire - Build with PipeWire support.
 media-video/obs-studio:python - Build with scripting support for Python 3.
 media-video/obs-studio:qsv - Build with Intel Quick Sync Video support.
+media-video/obs-studio:sndio - Build with sndio support.
 media-video/obs-studio:speex - Build with Speex noise suppression filter support.
-media-video/obs-studio:ssl - Build with TLS/SSL support for RTMPS connections.
+media-video/obs-studio:test-input - Build and install input sources used for testing.
 media-video/obs-studio:vlc - Build with VLC media source support.
 media-video/obs-studio:websocket - Build with WebSocket API support.
 media-video/peek:keybinder - Enable support for global hotkeys using dev-libs/keybinder
@@ -6485,6 +6484,7 @@ net-misc/moonlight:embedded - Optimize UI for fullscreen non-desktop usage
 net-misc/moonlight:glslow - Prefer direct KMS/DRM rendering over EGL/GLES rendering for better performance on some weaker GPUs
 net-misc/moonlight:libdrm - Enable video rendering via x11-libs/libdrm
 net-misc/moonlight:soundio - Enable sound output via media-libs/libsoundio instead of media-libs/libsdl2
+net-misc/moonlight:vkslow - Prefer hardware YUV-RGB conversion and scaling over Vulkan for better performance on some weaker GPUs
 net-misc/mosh:client - Build network client
 net-misc/mosh:examples - Include example scripts
 net-misc/mosh:mosh-hardening - Enable compiler and linker options to frustrate memory corruption exploits
@@ -6868,6 +6868,9 @@ net-proxy/tinyproxy:transparent-proxy - Enable transparent proxying
 net-proxy/tinyproxy:upstream-proxy - Enable upstream proxying
 net-proxy/tinyproxy:xtinyproxy-header - Include the X-Tinyproxy header
 net-proxy/trojan:mysql - build with MySQL support
+net-proxy/trojan:nat - Build with NAT support
+net-proxy/trojan:reuseport - Build with SO_REUSEPORT support
+net-proxy/trojan:tcpfastopen - Force build with TCP Fast Open support
 net-proxy/tsocks:dns - Force DNS queries to use SOCKS server via tcp
 net-proxy/tsocks:envconf - Allow TSOCKS_CONF_FILE to specify configuration file
 net-proxy/tsocks:server-lookups - Allow hostname resolution _for_ SOCKS servers
@@ -6898,7 +6901,6 @@ net-vpn/eduvpn-common:openvpn - enable support for OpenVPN
 net-vpn/eduvpn-common:wireguard - enable support for WireGuard
 net-vpn/frp:client - Build and install frp client (frpc)
 net-vpn/frp:server - Build and install frp server (frps)
-net-vpn/i2pd:i2p-hardening - Compile with hardening on vanilla compilers/linkers
 net-vpn/libreswan:dnssec - Use DNSSEC resolver (requires net-dns/unbound)
 net-vpn/libreswan:ikev1 - Enable the IKEv1 protocol
 net-vpn/networkmanager-sstp:gtk4 - Use gui-libs/gtk for GUI support.
@@ -7936,6 +7938,7 @@ sys-apps/superdiag:iso - Install an iso image, which can be used with sys-apps/s
 sys-apps/superdiag:usb - Install all files, which are needed for an installation on an usb thumb drive.
 sys-apps/systemd:audit - Enable support for sys-process/audit
 sys-apps/systemd:boot - Enable EFI boot manager and stub loader
+sys-apps/systemd:bpf - Enable BPF support for sandboxing and firewalling.
 sys-apps/systemd:cgroup-hybrid - Default to hybrid (legacy) cgroup hierarchy instead of unified (modern).
 sys-apps/systemd:cryptsetup - Enable cryptsetup tools (includes unit generator for crypttab)
 sys-apps/systemd:curl - Enable support for uploading journals
@@ -8600,7 +8603,6 @@ www-apps/roundup:pyjwt - Enable jwt tokens for login
 www-apps/roundup:tz - Enable full support of timezone
 www-apps/roundup:whoosh - Enable Whoosh full-text indexer
 www-apps/roundup:xapian - Enable Xapian full-text indexer
-www-apps/rt:lighttpd - Add www-servers/lighttpd support
 www-apps/tt-rss:daemon - Install additional init scripts for automated RSS updates
 www-apps/ttyd:mbedtls - Use mbedTLS replacement for OpenSSL
 www-apps/webdavcgi:rcs - Adds support for a revision controlled backend with RCS (dev-vcs/rcs)
@@ -8994,22 +8996,7 @@ x11-themes/gentoo-artwork:pixmaps - Install pixmaps
 x11-themes/gtk-engines-murrine:animation-rtl - Progressbar animation from right to left
 x11-themes/gtk-engines-murrine:themes - Pull in themes via x11-themes/murrine-themes
 x11-themes/kfaenza:additional - Install additional KFaenza icons. See third homepage for details
-x11-themes/tela-icon-theme:black - Install black folder version
-x11-themes/tela-icon-theme:blue - Install blue folder version
-x11-themes/tela-icon-theme:brown - Install bworn folder version
-x11-themes/tela-icon-theme:dracula - Install dracula folder version
-x11-themes/tela-icon-theme:green - Install green folder version
-x11-themes/tela-icon-theme:grey - Install grey folder version
 x11-themes/tela-icon-theme:hardlink - Hardlink duplicate icons to greatly reduce installation size
-x11-themes/tela-icon-theme:manjaro - Install manjaro folder version
-x11-themes/tela-icon-theme:nord - Install nord folder version
-x11-themes/tela-icon-theme:orange - Install orange folder version
-x11-themes/tela-icon-theme:pink - Install pink folder version
-x11-themes/tela-icon-theme:purple - Install purple folder version
-x11-themes/tela-icon-theme:red - Install red older version
-x11-themes/tela-icon-theme:standard - Install standard folder version
-x11-themes/tela-icon-theme:ubuntu - Install ubuntu folder version
-x11-themes/tela-icon-theme:yellow - Install yellow folder version
 x11-themes/vertex-theme:cinnamon - Install theme for gnome-extra/cinnamon
 x11-themes/vertex-theme:gnome-shell - Install theme for gnome-base/gnome-shell
 x11-themes/vertex-theme:mate - Install Metacity theme for mate-base/mate
