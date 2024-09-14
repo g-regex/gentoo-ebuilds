@@ -69,6 +69,10 @@
       <name>Anthony G. Basile</name>
     </member>
     <member>
+      <email>ceamac@gentoo.org</email>
+      <name>Viorel Munteanu</name>
+    </member>
+    <member>
       <email>dilfridge@gentoo.org</email>
       <name>Andreas K. Hüttel</name>
       <role>Release engineering</role>
@@ -118,6 +122,10 @@
       <email>blueness@gentoo.org</email>
       <name>Anthony G. Basile</name>
       <role>Catalyst builds for systemd and musl</role>
+    </member>
+    <member>
+      <email>ceamac@gentoo.org</email>
+      <name>Viorel Munteanu</name>
     </member>
     <member>
       <email>flow@gentoo.org</email>
@@ -1298,25 +1306,6 @@
     </member>
   </project>
   <project>
-    <email>ia64@gentoo.org</email>
-    <name>IA64 Development</name>
-    <url>https://wiki.gentoo.org/wiki/Project:IA64</url>
-    <description>The IA64 Development Project is devoted to keeping Gentoo in good shape on the IA64 architecture.</description>
-    <member>
-      <email>ago@gentoo.org</email>
-      <name>Agostino Sarubbo</name>
-      <role>Security bugs primarily</role>
-    </member>
-    <member>
-      <email>hattya@gentoo.org</email>
-      <name>Akinori Hattori</name>
-    </member>
-    <member>
-      <email>vapier@gentoo.org</email>
-      <name>Mike Frysinger</name>
-    </member>
-  </project>
-  <project>
     <email>infra@gentoo.org</email>
     <name>Gentoo Infrastructure</name>
     <url>https://wiki.gentoo.org/wiki/Project:Infrastructure</url>
@@ -2262,22 +2251,22 @@
     <member>
       <email>alicef@gentoo.org</email>
       <name>Arisu Tachibana</name>
-      <role>Mastodon (Admin), Twitter (Admin), Events, Telegram (admin)</role>
+      <role>Mastodon (admin), Twitter (admin), Events, Telegram (admin)</role>
     </member>
     <member>
       <email>dilfridge@gentoo.org</email>
       <name>Andreas K. Hüttel</name>
-      <role>Facebook (admin), Twitter</role>
+      <role>Facebook (admin), Twitter/X, LinkedIn (admin)</role>
     </member>
     <member>
       <email>jstein@gentoo.org</email>
       <name>Jonas Stein</name>
-      <role>Workshops, XMPP</role>
+      <role>Mastodon (admin), Workshops, XMPP</role>
     </member>
     <member is-lead="1">
       <email>maffblaster@gentoo.org</email>
       <name>Matthew Marchese</name>
-      <role>Cafepress store, Mastodon (Admin), X, Telegram (admin)</role>
+      <role>Cafepress store, Mastodon (admin), X, Telegram (admin), LinkedIn (admin)</role>
     </member>
     <member>
       <email>rich0@gentoo.org</email>

@@ -52,11 +52,19 @@ if [[ ${PV} != 9999 ]]; then
 		S=${WORKDIR}/${P%_*}
 	fi
 	BDEPEND="verify-sig? ( sec-keys/openpgp-keys-danielkiper )"
-	KEYWORDS="~amd64 ~arm ~arm64 ~ia64 ~loong ~ppc ~ppc64 ~riscv ~sparc ~x86"
+	KEYWORDS="amd64 ~arm arm64 ~loong ~ppc ~ppc64 ~riscv ~sparc x86"
 else
 	inherit git-r3
 	EGIT_REPO_URI="https://git.savannah.gnu.org/git/grub.git"
 fi
+
+PATCHES=(
+	"${FILESDIR}"/gfxpayload.patch
+	"${FILESDIR}"/grub-2.02_beta2-KERNEL_GLOBS.patch
+	"${FILESDIR}"/grub-2.06-test-words.patch
+	"${FILESDIR}"/grub-2.12-fwsetup.patch
+	"${WORKDIR}"/grub-2.12-bash-completion.patch
+)
 
 DEJAVU=dejavu-sans-ttf-2.37
 UNIFONT=unifont-15.0.06
@@ -66,7 +74,7 @@ SRC_URI+=" fonts? ( mirror://gnu/unifont/${UNIFONT}/${UNIFONT}.pcf.gz )
 # Includes licenses for dejavu and unifont
 LICENSE="GPL-3+ BSD MIT fonts? ( GPL-2-with-font-exception ) themes? ( CC-BY-SA-3.0 BitstreamVera )"
 SLOT="2/${PVR}"
-IUSE="device-mapper doc efiemu +fonts mount nls sdl test +themes truetype libzfs"
+IUSE="+device-mapper doc efiemu +fonts mount nls sdl test +themes truetype libzfs"
 
 GRUB_ALL_PLATFORMS=( coreboot efi-32 efi-64 emu ieee1275 loongson multiboot
 	qemu qemu-mips pc uboot xen xen-32 xen-pvh )
@@ -155,14 +163,6 @@ src_unpack() {
 }
 
 src_prepare() {
-	local PATCHES=(
-		"${FILESDIR}"/gfxpayload.patch
-		"${FILESDIR}"/grub-2.02_beta2-KERNEL_GLOBS.patch
-		"${FILESDIR}"/grub-2.06-test-words.patch
-		"${FILESDIR}"/grub-2.12-fwsetup.patch
-		"${WORKDIR}"/grub-2.12-bash-completion.patch
-	)
-
 	default
 
 	python_setup

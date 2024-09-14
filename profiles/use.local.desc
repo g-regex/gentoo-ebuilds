@@ -333,6 +333,7 @@ app-containers/crun:criu - Enable CRIU based checkpoint/restore support
 app-containers/docker:btrfs - Enables dependencies for the "btrfs" graph driver, including necessary kernel flags.
 app-containers/docker:container-init - Makes the a staticly-linked init system tini available inside a container.
 app-containers/docker:overlay - Enables dependencies for the "overlay" graph driver, including necessary kernel flags.
+app-containers/docker:overlay2 - Enables dependencies for the "overlay2" graph driver, including necessary kernel flags.
 app-containers/docker-credential-helpers:pass - Build pass helper for the pass utility.
 app-containers/incus:fuidshift - Install the fuidshift binary - currently conflicts with app-containers/lxd
 app-containers/lxc:io-uring - Enable io_uring support, and use io_uring instead of epoll
@@ -481,8 +482,6 @@ app-editors/pluma-plugins:synctex - Enable synctex support for pdflatex
 app-editors/pluma-plugins:terminal - Embed a terminal in the bottom pane
 app-editors/qhexedit2:gui - Install Qt5 hex editor
 app-editors/tea:aspell - Enable spellchecking using app-text/aspell
-app-editors/tea:hunspell - Enable spellchecking using app-text/hunspell
-app-editors/tea:qml - Enable support for plugins using QML
 app-editors/vim:X - Link console vim against X11 libraries to enable title and clipboard features in xterm
 app-editors/vim:crypt - Use dev-libs/libsodium for crypto support
 app-editors/vim:cscope - Enable cscope interface
@@ -1029,14 +1028,12 @@ app-office/abiword:redland - Enables support redland and raptor libs.
 app-office/abiword:thesaurus - Enable thesaurus support
 app-office/abiword:wordperfect - Enable wordperfect file support via app-text/libwpd
 app-office/calcurse:caldav - Support CalDAV
-app-office/calligra:activities - Enable kactivities support
 app-office/calligra:charts - Build chartshape plugin for creating business charts with dev-libs/kdiagram
-app-office/calligra:gemini - Enable tablet and 2:1 devices support
 app-office/calligra:import-filter - Enable support for various import filter file formats like WordPerfect, Visio and Apple Keynote
 app-office/calligra:lcms - Build colorengine plugins using media-libs/lcms
 app-office/calligra:okular - Enable bindings for kde-apps/okular
 app-office/calligra:phonon - Build stage/eventplugins and videoshape plugin using media-libs/phonon
-app-office/calligra:spacenav - Enable support for the 3Dconnexion spacenav input device via dev-libs/libspnav
+app-office/calligra:webengine - Enable Braindump support using dev-qt/qtwebengine
 app-office/calligraplan:activities - Enable kactivities support
 app-office/calligraplan:holidays - Enable kde-frameworks/kholidays integration
 app-office/calligraplan:kwallet - Enable access to encrypted OpenDocument files with kde-frameworks/kwallet storage
@@ -1452,7 +1449,7 @@ dev-db/unixODBC:minimal - Disable bundled drivers and extra libraries (most user
 dev-db/unixODBC:odbcmanual - Administrator, Internal Structure, Programmer and User documentation
 dev-debug/bpftrace:fuzzing - Build bpftrace for fuzzing
 dev-debug/bpftrace:lldb - Parse debug info usingdev-debug/lldb
-dev-debug/dtrace:install-tests - Install the testsuite for manual use. It is not suitable for automatic execution within the ebuild because it requires root privlieges.
+dev-debug/dtrace:test-install - Install the testsuite for manual use. It is not suitable for automatic execution within the ebuild because it requires root privlieges.
 dev-debug/gdb:cet - Enable Intel Control-flow Enforcement Technology.
 dev-debug/gdb:debuginfod - Enable debuginfod support via dev-libs/elfutils libdebuginfod
 dev-debug/gdb:lzma - Support lzma compression in ELF debug info
@@ -2505,7 +2502,9 @@ dev-python/pypax:ptpax - Enable PT_PAX_FLAGS support.
 dev-python/pypax:xtpax - Enable XATTR_PAX_FLAGS support.
 dev-python/pypy:full-stdlib - Install complete stdlib as necessary to use PyPy for general purpose programs. By default, only a limited subset that is used when building PyPy3 executables is installed. Note that PyPy2.7's stdlib contains multiple known vulnerabilities.
 dev-python/pypy-exe:low-memory - Build using PyPy with the engine configured towards low memory footprint. This makes it possible to build PyPy using ~3.5G of RAM on amd64 and ~half of that on x86, at the cost of lengthened build time.
+dev-python/pypy3:test-install - Install the test suite packages, that are required to run tests in a few reverse dependencies.
 dev-python/pypy3_10:ensurepip - Install the ensurepip module that uses bundled wheels to bootstrap pip and setuptools (if disabled, it will be only possible to use venv `--without-pip`)
+dev-python/pypy3_10:test-install - Install the test suite packages, that are required to run tests in a few reverse dependencies.
 dev-python/pypy3_10-exe:low-memory - Build using PyPy with the engine configured towards low memory footprint. This makes it possible to build PyPy using ~3.5G of RAM on amd64 and ~half of that on x86, at the cost of lengthened build time.
 dev-python/pypy3_9:ensurepip - Install the ensurepip module that uses bundled wheels to bootstrap pip and setuptools (if disabled, it will be only possible to use venv `--without-pip`)
 dev-python/pypy3_9-exe:low-memory - Build using PyPy with the engine configured towards low memory footprint. This makes it possible to build PyPy using ~3.5G of RAM on amd64 and ~half of that on x86, at the cost of lengthened build time.
@@ -3673,6 +3672,7 @@ kde-misc/kdeconnect:pulseaudio - Enable system volume control plugin using media
 kde-misc/kdeconnect:telephony - Enable telephony plugin using kde-frameworks/modemmanager-qt
 kde-misc/kio-gdrive:kf6compat - Disable components colliding with KF6, depend on KF6 components instead
 kde-misc/kio-gdrive:share - Enable support for a share menu using kde-frameworks/purpose
+kde-misc/krename:office - Enable support for file naming based on ODF metadata
 kde-misc/tellico:bibtex - Add support for bibtex importing using btparse from dev-perl/Text-BibTeX
 kde-misc/tellico:discid - Add support for reading disc IDs from audio CDs
 kde-misc/tellico:yaz - Add support for searching Z39.50 databases
@@ -4999,7 +4999,6 @@ media-tv/tvheadend:vpx - Enable transcoding with the VP8/VP9 video codecs
 media-tv/tvheadend:x264 - Enable transcoding with the H.264 video codec
 media-tv/tvheadend:x265 - Enable transcoding with the HEVC video codec
 media-tv/tvheadend:xmltv - Use media-tv/xmltv
-media-tv/v4l-utils:bpf - Enables support for IR BPF decoders.
 media-tv/xmltv:ar - Argentina tv listing grabber
 media-tv/xmltv:ch-search - Grabber for Switzerland
 media-tv/xmltv:eu-epgdata - include fanart URLs for some European countries.
@@ -6060,7 +6059,6 @@ net-libs/libpcap:yydebug - Enable parser debugging code
 net-libs/libprotoident:tools - Build and install command-line tools
 net-libs/libproxy:duktape - Use dev-lang/duktape for PAC parsing
 net-libs/libproxy:gnome - Enable support for reading proxy settings from GNOME
-net-libs/libproxy:kde - Enable support for reading proxy settings from KDE
 net-libs/libqmi:mbim - Support QMI over Mobile Broadband Interface Model (MBIM)
 net-libs/libqmi:qrtr - Support QMI over IPC Router bus (QRTR)
 net-libs/libsoup:gssapi - Enable GSSAPI support
@@ -6481,7 +6479,6 @@ net-misc/mosh:nettle - Use dev-libs/nettle for some cryptographic functions inst
 net-misc/mosh:server - Build network server
 net-misc/mosh:ufw - Install net-firewall/ufw rule set
 net-misc/mosh:utempter - Include libutempter support
-net-misc/mrouted:rsrr - Enable Routing Support for Resource Reservations, for RSVP
 net-misc/mulk:checksum - Enable checksum verification for Metalink from dev-libs/openssl
 net-misc/mulk:metalink - Enable support for media-libs/libmetalink
 net-misc/netifrc:dhcp - Allow interfaces to configure via DHCP
@@ -7686,9 +7683,7 @@ sci-visualization/gwyddion:fits - Enable FITS image import via sci-libs/cfitsio
 sci-visualization/gwyddion:jansson - Enable JSON data manipulation via dev-libs/jansson
 sci-visualization/gwyddion:sourceview - Enable support for x11-libs/gtksourceview
 sci-visualization/gwyddion:unique - Enable remote control backend via dev-libs/libunique
-sci-visualization/labplot:cantor - Enable support for different open-source computer algebra systems via kde-apps/cantor
 sci-visualization/labplot:eigen - Enable support for fast baseline removal via dev-cpp/eigen
-sci-visualization/labplot:excel - Enable support for importing/exporting Microsoft Excel files (.xlsx) via dev-libs/qxlsx
 sci-visualization/labplot:fits - Enable support for NASA's sci-libs/cfitsio library
 sci-visualization/labplot:libcerf - Enable special functions from sci-libs/libcerf
 sci-visualization/labplot:markdown - Enable Markdown support via app-text/discount
@@ -8057,7 +8052,7 @@ sys-block/sas3flash:uefi - Install UEFI variant as well
 sys-block/sas3ircu:uefi - Install EFI variant as well
 sys-block/tgt:rbd - Add support for ceph block devices
 sys-block/thin-provisioning-tools:io-uring - Enable experimental support for io-uring.
-sys-boot/grub:device-mapper - Enable support for device-mapper from sys-fs/lvm2
+sys-boot/grub:device-mapper - Enable support for devmapper. Required for LUKS or LVM volume detection.
 sys-boot/grub:efiemu - Build and install the efiemu runtimes
 sys-boot/grub:fonts - Build and install fonts for the gfxterm module
 sys-boot/grub:libzfs - Enable support for sys-fs/zfs
@@ -8632,6 +8627,7 @@ www-client/firefox:clang - Use Clang compiler instead of GCC
 www-client/firefox:eme-free - Disable EME (DRM plugin) capability at build time
 www-client/firefox:geckodriver - Enable WebDriver support
 www-client/firefox:gmp-autoupdate - Allow Gecko Media Plugins (binary blobs) to be automatically downloaded and kept up-to-date in user profiles
+www-client/firefox:gnome-shell - Integrate with gnome-base/gnome-shell search
 www-client/firefox:hwaccel - Force-enable hardware-accelerated rendering (Mozilla bug 594876)
 www-client/firefox:jumbo-build - Enable unified build - combines source files to speed up build process, but requires more memory
 www-client/firefox:libproxy - Enable libproxy support

@@ -1,0 +1,15 @@
+BDEPEND=fortran? ( virtual/fortran )
+DEFINED_PHASES=configure install setup
+DEPEND=fortran? ( virtual/fortran )
+DESCRIPTION=Quad-double and double-double float arithmetics
+EAPI=8
+HOMEPAGE=https://www.davidhbailey.com/dhbsoftware/
+INHERIT=fortran-2
+IUSE=cpu_flags_x86_fma3 cpu_flags_x86_fma4 doc fortran
+KEYWORDS=~amd64 ~x86 ~amd64-linux ~x86-linux
+LICENSE=LBNLBSD
+RDEPEND=fortran? ( virtual/fortran )
+SLOT=0
+SRC_URI=https://www.davidhbailey.com/dhbsoftware/qd-2.3.24.tar.gz
+_eclasses_=fortran-2	39cd09e82b679e683a5109f9d0da9fe1	multilib	7e1347c006a76bb812f3a9f663b79991	toolchain-funcs	948855ec7ad9f11351edf9066708dfa9
+_md5_=103db9940ea13de08d57d59f48be92f7

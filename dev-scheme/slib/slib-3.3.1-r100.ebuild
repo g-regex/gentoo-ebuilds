@@ -17,7 +17,7 @@ S="${WORKDIR}"/${PN}
 
 LICENSE="public-domain BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~alpha ~amd64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="gambit scm"
 RESTRICT="mirror"
 REQUIRED_USE="${GUILE_REQUIRED_USE}"
@@ -54,7 +54,7 @@ src_compile() {
 }
 
 _new_catalog() {
-	if [[ ${1} != @(guile|scm) ]] then
+	if [[ ${1} != @(guile|scm) ]] ; then
 		echo -n "(load \"${ROOT}/usr/share/slib/${1}.init\")" || die
 	fi
 	echo " (require 'new-catalog) (slib:report-version)" || die

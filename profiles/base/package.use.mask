@@ -6,6 +6,11 @@
 # This file is only for generic masks. For arch-specific masks (i.e.
 # mask everywhere, unmask on arch/*) use arch/base.
 
+# Sam James <sam@gentoo.org> (2024-09-07)
+# yacc[reference] exists more for curiosity than anything else, it's
+# not for real use on systems.
+app-alternatives/yacc reference
+
 # Sam James <sam@gentoo.org> (2024-09-03)
 # Causes crashes with e.g. dlz+samba (bug #938955)
 net-dns/bind jemalloc
@@ -27,7 +32,6 @@ kde-apps/umbrello:5 php
 # Prepare for KDE PIM 5 removal and avoid conflicts w/ KDE PIM 6
 app-office/kmymoney:5 addressbook
 app-office/kraft:5 pim
-media-gfx/digikam:5 addressbook
 
 # Viorel Munteanu <ceamac@gentoo.org> (2024-07-26)
 # Branch 7.1 needs a new BDEPEND for doc
