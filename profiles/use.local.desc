@@ -955,7 +955,6 @@ app-misc/muttprint:doc - Builds documentation
 app-misc/neofetch:X - Enable support for detecting DEs, WMs, screen resolutions, and showing images from an X terminal
 app-misc/nnn:8contexts - Enable 8 contexts (instead of 4)
 app-misc/nnn:colemak - Key bindings for Colemak keyboard layout
-app-misc/nnn:colemak-dh - Key bindings for Colemak-DH keyboard layout
 app-misc/nnn:emoji - Display icons using emoji
 app-misc/nnn:gitstatus - Add git status column to the detail view
 app-misc/nnn:icons - Display icons using icons-in-terminal
@@ -1349,6 +1348,7 @@ dev-cpp/eigen:superlu - Add test support for SuperLU (sci-libs/superlu)
 dev-cpp/eigen:umfpack - Add test support for UMFPACK (sci-libs/umfpack)
 dev-cpp/glog:gflags - Use dev-cpp/gflags for flag parsing
 dev-cpp/glog:libunwind - Use libunwind library (sys-libs/libunwind or sys-libs/llvm-libunwind) instead of built-in fallback implementation for stack unwinding
+dev-cpp/gtest:abseil - Build with functionality provided by dev-cpp/abseil-cpp and dev-libs/re2
 dev-cpp/jwt-cpp:picojson - Enable use of dev-cpp/picojson
 dev-cpp/libcmis:tools - Build client tool for testing and viewing features
 dev-cpp/libjson-rpc-cpp:http-client - Build support for HTTP client using net-misc/curl
@@ -1884,7 +1884,6 @@ dev-lang/php:xslt - Build the XSL extension
 dev-lang/polyml:portable - Build the portable interpreter version of Poly/ML instead of native
 dev-lang/python:bluetooth - Build Bluetooth protocol support in socket module
 dev-lang/python:ensurepip - Install the ensurepip module that uses bundled wheels to bootstrap pip and setuptools (if disabled, it will be only possible to use venv `--without-pip`)
-dev-lang/python:gil - Build with Global Interpreter Lock. Disable to use the experimental freethreading mode.
 dev-lang/python:jit - Enable experimental Just-In-Time compilation support.
 dev-lang/python:libedit - Link readline extension against dev-libs/libedit instead of sys-libs/readline
 dev-lang/python:pgo - Optimize the build using Profile Guided Optimization (PGO) by running Python's test suite and collecting statistics based on its performance. This will take longer to build.
@@ -3686,6 +3685,8 @@ kde-plasma/plasma-desktop:scim - Enable applets that use app-i18n/scim
 kde-plasma/plasma-desktop:webengine - Build the OpenDesktop integration plugin
 kde-plasma/plasma-firewall:firewalld - Build net-firewall/firewalld backend
 kde-plasma/plasma-firewall:ufw - Build net-firewall/ufw backend
+kde-plasma/plasma-login-sessions:X - Install X11 session file for Display Managers (default is Wayland if both enabled)
+kde-plasma/plasma-login-sessions:wayland - Install Wayland session file for Display Managers
 kde-plasma/plasma-meta:browser-integration - Enable integration with Chrome/Firefox with browser extensions
 kde-plasma/plasma-meta:colord - Enable kde-plasma/kwin color management via x11-misc/colord
 kde-plasma/plasma-meta:crash-handler - Pull in kde-plasma/drkonqi for assisted upstream crash reports
@@ -5741,6 +5742,7 @@ net-fs/samba:glusterfs - Enable support for Glusterfs filesystem via sys-cluster
 net-fs/samba:gpg - Use app-crypt/gpgme for AD DC
 net-fs/samba:iprint - Enabling iPrint technology by Novell
 net-fs/samba:json - Enable json audit support through dev-libs/jansson
+net-fs/samba:lmdb - Enable LMDB backend for bundled ldb
 net-fs/samba:profiling-data - Enables support for collecting profiling data
 net-fs/samba:quota - Enables support for user quotas
 net-fs/samba:regedit - Enable support for regedit command-line tool
@@ -6666,7 +6668,6 @@ net-nds/openldap:smbkrb5passwd - Enable overlay for syncing ldap, unix and lanma
 net-nds/rpcbind:remotecalls - Enable remote calls
 net-nds/rpcbind:warmstarts - Enables rpcbind to cache configuration for warm restarts
 net-news/rssguard:libmpv - Enable media player support via libmpv from media-video/mpv
-net-news/rssguard:qt6 - Build with Qt6 support instead of the default Qt5
 net-news/rssguard:qtmultimedia - Enable media player support via dev-qt/qtmultimedia
 net-news/rssguard:webengine - Use dev-qt/qtwebengine for embedded web browser
 net-news/sfeed:theme-mono - Use mono theme
@@ -7059,6 +7060,7 @@ sci-astronomy/siril:libconfig - Require dev-libs/libconfig to read old configura
 sci-astronomy/siril:wcs - Add supprt astrometry features using sci-astronomy/wcslib
 sci-astronomy/stellarium:deep-sky - Install extra deep sky objects catalog (may affect performance)
 sci-astronomy/stellarium:lens-distortion - Enable lens distortion estimator plugin
+sci-astronomy/stellarium:libcxx - Use external libraries for STL features not available in libc++
 sci-astronomy/stellarium:media - Enable sound and video support
 sci-astronomy/stellarium:scripting - Enable JS scripting via dev-qt/qtscript in Qt5 or using Qml via dev-qt/qtdeclarative in Qt6
 sci-astronomy/stellarium:show-my-sky - Enable a better atmosphere model via sci-astronomy/calcmysky
@@ -7322,7 +7324,7 @@ sci-libs/hipSOLVER:sparse - Build hipSOLVER with sparse functionality (sci-libs/
 sci-libs/hypre:int64 - Build the 64 bits integer library
 sci-libs/indilib:rtlsdr - Enable support for devices supported by net-wireless/rtl-sdr
 sci-libs/indilib:websocket - Enable support for WebSocket protocol
-sci-libs/ipopt:hsl - hsl
+sci-libs/ipopt:asl - AMPL Solver Library support and build the 'ipopt' binary
 sci-libs/ipopt:mumps - Enable sci-libs/mumps support
 sci-libs/kissfft:alloca - Use alloca(3) instead of malloc(3) for memory management
 sci-libs/kissfft:tools - Build command line tools
