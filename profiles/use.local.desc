@@ -389,6 +389,8 @@ app-crypt/mit-krb5:lmdb - Add support for using dev-db/lmdb for lookup tables
 app-crypt/mit-krb5:openldap - Enable support for ldap as a database backend
 app-crypt/mit-krb5:pkinit - Enable pkinit support for the initial ticket
 app-crypt/mkp224o:pcre - Search with a regex instead of prefix/suffix matching
+app-crypt/onak:dynamic - Support for dynamic loading of backends
+app-crypt/onak:hkp - Proxying backend support
 app-crypt/ophcrack:tables - Require the additional tables used to carry out cracking (app-crypt/ophcrack-tables)
 app-crypt/ophcrack-tables:vistafree - Installs the free Vista ophcrack tables
 app-crypt/ophcrack-tables:xpfast - Installs the fast XP ophcrack tables
@@ -490,8 +492,6 @@ app-editors/vscodium:wayland - Run in wayland mode under wayland sessions, xwayl
 app-editors/xemacs:athena - Chooses the MIT Athena widget set
 app-editors/xemacs:bignum - Support for OpenSSL bignum implementation
 app-editors/xemacs:dnd - Enables support for the x11-libs/dnd drag-n-drop library
-app-editors/xemacs:eolconv - Support detection and translation of newline conventions
-app-editors/xemacs:mule - Add multi-language support to XEmacs
 app-editors/xemacs:pop - Support POP for mail retrieval
 app-editors/xemacs:xim - Enable X11 XiM input method
 app-editors/zed:gles - Use simplified OpenGLES instead of full-scale OpenGL
@@ -1035,7 +1035,6 @@ app-office/calligraplan:kwallet - Enable access to encrypted OpenDocument files 
 app-office/glabels:barcode - Enable barcode support through external libraries.
 app-office/gnucash:aqbanking - Connect to some internet banks via AqBanking
 app-office/gnucash:quotes - Enable online stock quote retrieval
-app-office/gnucash:register2 - Use the new register (Experimental)
 app-office/gnumeric:libgda - Enable database support through gnome-extra/libgda.
 app-office/gnumeric:perl - Enable perl plugin loader.
 app-office/grisbi:goffice - enable goffice graphic support
@@ -1463,6 +1462,7 @@ dev-debug/ltrace:unwind - Use sys-libs/libunwind for frame unwinding support
 dev-debug/strace:aio - Enable dev-libs/libaio support for tracing Asynchronous I/O operations
 dev-debug/strace:elfutils - Enable stack backtraces (-k flag) via dev-libs/elfutils
 dev-debug/strace:unwind - Enable stack backtraces (-k flag) via sys-libs/libunwind
+dev-debug/sysdig:bpf - Enable the BPF probe as alternative event source to dev-debug/scap-driver.
 dev-debug/sysdig:modules - Build kernel modules needed for tracing local events. Disable this only if you intend to use sysdig purely to work with dumpfiles.
 dev-debug/systemtap:debuginfod - Enable debuginfod support via dev-libs/elfutils libdebuginfod
 dev-debug/systemtap:dtrace-symlink - Provide /usr/bin/dtrace symlink pointing to /usr/bin/stap-dtrace. This prevents coinstallation with dev-debug/dtrace.
@@ -1998,6 +1998,7 @@ dev-libs/efl:xim - Enable X Input Method
 dev-libs/efl:xpresent - Enable x11-libs/libXpresent support
 dev-libs/elfutils:debuginfod - Enable debuginfod support, both the debuginfod server and the libdebuginfod client library
 dev-libs/elfutils:lzma - Support automatic decompression of LZMA-compressed files and kernel images
+dev-libs/elfutils:stacktrace - Build experimental eu-stacktrace tool. Relies on integration with dev-util/sysprof. See https://developers.redhat.com/articles/2024/06/11/get-system-wide-profiles-binaries-without-frame-pointers.
 dev-libs/elfutils:utils - Install command-line utilities (all the eu-* programs)
 dev-libs/fcgi:html - Install HTML documentation
 dev-libs/folks:telepathy - Load contacts from the Telepathy framework
@@ -3109,6 +3110,8 @@ games-board/tablebase-syzygy:6-pieces - Install tablebases for 6 pieces (huge!)
 games-board/xboard:default-font - Install the default font that xboard uses
 games-board/xboard:zippy - Enable experimental zippy client
 games-emulation/atari800:encode-mp3 - Support recording sound in MP3 format
+games-emulation/bsnes-jg:jgmodule - Build module for The Jolly Good API
+games-emulation/bsnes-jg:shared - Build shared library
 games-emulation/desmume:gdb - Enable support for the remote GDB stub
 games-emulation/desmume:openal - Use media-libs/openal for microphone input
 games-emulation/desmume:wifi - Enable support for Wi-Fi (experimental and discouraged)
@@ -3524,7 +3527,6 @@ kde-apps/ark:zip - Enable ZIP archive support via dev-libs/libzip
 kde-apps/cantor:R - Enable dev-lang/R backend support
 kde-apps/cantor:julia - Enable dev-lang/julia backend support
 kde-apps/cantor:qalculate - Enable sci-libs/libqalculate backend support
-kde-apps/dolphin:activities - Track which folders are frequently accessed on a Plasma desktop
 kde-apps/gwenview:activities - Enable kactivities support
 kde-apps/gwenview:fits - Enable support for NASA's sci-libs/cfitsio library
 kde-apps/gwenview:mpris - Enable support for MPRIS2 interface, requiring dev-qt/qtdbus as dependency.
@@ -3599,7 +3601,6 @@ kde-apps/ktouch:X - Enable support for X11 Keyboard Layout Detection
 kde-apps/kwave:qtmedia - Enable playback via Qt5Multimedia
 kde-apps/libkdepim:designer - Build plugins for dev-qt/designer
 kde-apps/libkgapi:kf6compat - Disable components colliding with KF6, depend on KF6 components instead
-kde-apps/libkleo:fancyviewer - Use kde-apps/kpimtextedit for an improved audit log viewer
 kde-apps/libksane:kwallet - Enable encrypted storage of passwords with kde-frameworks/kwallet
 kde-apps/mailcommon:designer - Build plugins for dev-qt/designer
 kde-apps/marble:aprs - Enable support for APRS data sources
@@ -3624,7 +3625,6 @@ kde-apps/thumbnailers:blender - Enable blender thumbnail generation using kde-fr
 kde-apps/thumbnailers:gettext - Enable PO file thumbnail generation using kde-apps/kdesdk-thumbnailers
 kde-apps/thumbnailers:mobi - Enable mobipocket thumbnail generation using kde-apps/kdegraphics-mobipocket
 kde-apps/thumbnailers:video - Enable video thumbnail generation using kde-apps/ffmpegthumbs
-kde-apps/umbrello:php - Enable PHP import support using dev-util/kdevelop and dev-util/kdevelop-pg-qt
 kde-apps/yakuake:absolute-position - Use kde-plasma/kwayland for absolute window positioning in KWin
 kde-frameworks/kcompletion:designer - Build plugins for dev-qt/designer
 kde-frameworks/kconfig:qml - Enable QML/QtQuick support via dev-qt/qtdeclarative
@@ -3833,7 +3833,6 @@ mail-client/thunderbird:clang - Use Clang compiler instead of GCC
 mail-client/thunderbird:eme-free - Disable EME (DRM plugin) capability at build time
 mail-client/thunderbird:hwaccel - Force-enable hardware-accelerated rendering (Mozilla bug 594876)
 mail-client/thunderbird:libproxy - Enable libproxy support
-mail-client/thunderbird:openh264 - Use media-libs/openh264 for H.264 support instead of downloading binary blob from Mozilla at runtime
 mail-client/thunderbird:pgo - Add support for profile-guided optimization using gcc-4.5, for faster binaries. This option will double the compile time.
 mail-client/thunderbird:pulseaudio - Add sound server support via media-libs/libpulse (may be PulseAudio or Pipewire, or apulse if installed)
 mail-client/thunderbird:rust-extensions - Compile and install experimental rust extensions, that may become part of Thunderbird some day.
@@ -3846,7 +3845,6 @@ mail-client/thunderbird:system-libevent - Use the system-wide dev-libs/libevent 
 mail-client/thunderbird:system-librnp - Use system-wide dev-util/librnp instead of bundled one.
 mail-client/thunderbird:system-libvpx - Use the system-wide media-libs/libvpx instead of bundled.
 mail-client/thunderbird:system-png - Use the system-wide media-libs/libpng instead of bundled (requires APNG patches)
-mail-client/thunderbird:system-python-libs - Use system's python site instead of bundled python libraries
 mail-client/thunderbird:system-webp - Use the system-wide media-libs/libwebp instead of bundled.
 mail-client/thunderbird:wifi - Enable necko-wifi for NetworkManager integration, and access point MAC address scanning for better precision with opt-in geolocation services
 mail-filter/MailScanner:exim - Set mail-mta/exim to used MTA
@@ -4621,13 +4619,10 @@ media-sound/audacity:audiocom - Enable integrated uploading to audio.com
 media-sound/audacity:id3tag - Enables ID3 tagging with id3tag library
 media-sound/audacity:lv2 - Add support for Ladspa V2
 media-sound/audacity:mpg123 - Use media-sound/mpg123-base instead of media-libs/libmad for MPEG decoding
-media-sound/audacity:portmidi - Enable support for MIDI via media-libs/portmidi
 media-sound/audacity:portmixer - Enable the internal portmixer feature
-media-sound/audacity:portsmf - Enable support for Portable Standard Midi File Library
 media-sound/audacity:sbsms - Enables sbsms library support for slower, more accurate pitch and tempo changing
 media-sound/audacity:twolame - Enables twolame support (MPEG Audio Layer 2 encoder)
 media-sound/audacity:vamp - Enables vamp plugins support (Audio analysing plugins)
-media-sound/audacity:vst - Enable VST plugin support
 media-sound/audiotools:cue - Enable CUE sheet support
 media-sound/audiotools:dvda - Enable DVD-Audio support
 media-sound/audiotools:twolame - Enable twolame support (MPEG Audio Layer 2 encoder)
@@ -5091,7 +5086,6 @@ media-video/guvcview:qt5 - Build with Qt5 interface instead Gtk+
 media-video/handbrake:fdk - Support for encoding AAC using media-libs/fdk-aac.
 media-video/handbrake:gstreamer - Support for the streaming media framework from media-libs/gstreamer.
 media-video/handbrake:gtk - Install the GTK UI, ghb.
-media-video/handbrake:libav-aac - Support for encoding AAC using libav's internal encoder.
 media-video/handbrake:numa - Adds support for x265's NUMA capabilities.
 media-video/handbrake:x265 - Support for encoding h265 using media-libs/x265.
 media-video/libva-utils:examples - Build and install decode, encode, videoprocess and other VA-API examples.
@@ -6540,6 +6534,7 @@ net-misc/oidentd:masquerade - Enable support for masqueraded/NAT connections
 net-misc/olsrd:pud - Install the Node Position Update plugin
 net-misc/openntpd:constraints - Enable HTTPS TLS time constraint support
 net-misc/openssh:ldns - Use LDNS for DNSSEC/SSHFP validation.
+net-misc/openssh:legacy-ciphers - Enable support for deprecated, soon-to-be-dropped DSA keys. See https://marc.info/?l=openssh-unix-dev>m=170494903207436>w=2.
 net-misc/openssh:livecd - Enable root password logins for live-cd environment.
 net-misc/openssh:security-key - Include builtin U2F/FIDO support
 net-misc/openssh:ssl - Enable additional crypto algorithms via OpenSSL
@@ -7171,7 +7166,6 @@ sci-geosciences/merkaartor:libproxy - Use net-libs/libproxy for getting the HTTP
 sci-geosciences/merkaartor:webengine - Enable dev-qt/qtwebengine in some plugins
 sci-geosciences/merkaartor:zbar - Enable barcode support in MWalkingPapersBackground/GeoImage via media-gfx/zbar
 sci-geosciences/owntracks-recorder:crypt - Enable support for payload encryption with dev-libs/libsodium
-sci-geosciences/owntracks-recorder:greenwich - Enable support for the OwnTracks Greenwich firmware
 sci-geosciences/owntracks-recorder:http - Enable support for the built-in HTTP REST API
 sci-geosciences/owntracks-recorder:kill - Enable support removing data via the API (dangerous)
 sci-geosciences/owntracks-recorder:lua - Enable support for Lua hook integration
@@ -7220,7 +7214,6 @@ sci-libs/blis:pthread - Use pthread threadding model
 sci-libs/blis:serial - Use no threadding model
 sci-libs/caffe2:distributed - Support distributed applications
 sci-libs/caffe2:fbgemm - Use FBGEMM
-sci-libs/caffe2:ffmpeg - Add support for video processing operators
 sci-libs/caffe2:flash - Enable flash attention
 sci-libs/caffe2:gloo - Use sci-libs/gloo
 sci-libs/caffe2:mkl - Use sci-libs/mkl for blas, lapack and sparse blas routines
@@ -7228,7 +7221,6 @@ sci-libs/caffe2:nnpack - Use NNPACK
 sci-libs/caffe2:numpy - Add support for math operations through numpy
 sci-libs/caffe2:onednn - Use oneDNN
 sci-libs/caffe2:openblas - Use sci-libs/openblas for blas routines
-sci-libs/caffe2:opencv - Add support for image processing operators
 sci-libs/caffe2:openmp - Use OpenMP for parallel code
 sci-libs/caffe2:qnnpack - Use QNNPACK
 sci-libs/caffe2:rocm - Enable ROCm gpu computing support
@@ -8088,7 +8080,6 @@ sys-cluster/ceph:system-boost - Use system dev-libs/boost instead of the bundled
 sys-cluster/ceph:uring - Build with support for sys-libs/liburing
 sys-cluster/ceph:xfs - Add xfs support
 sys-cluster/ceph:zbd - Enable sys-block/libzbd bluestore backend
-sys-cluster/ceph:zfs - Add zfs support
 sys-cluster/charliecloud:ch-image - Build the internal builder ch-image (previously named ch-grow)
 sys-cluster/charm:ampi - Build implementation of MPI on top of Charm++
 sys-cluster/charm:charmdebug - Enable the charm debugger
@@ -8624,7 +8615,9 @@ www-client/dillo:openssl - Build against the dev-libs/openssl library for TLS su
 www-client/dillo:xembed - Enable XEmbed protocol support
 www-client/elinks:bittorrent - Enable support for the BitTorrent protocol
 www-client/elinks:finger - Enable support for the finger protocol
+www-client/elinks:gemini - Enable support for the gemini protocol
 www-client/elinks:gopher - Enable support for the gopher protocol
+www-client/elinks:libcss - Enable support for cascading style sheets via dev-libs/libcss
 www-client/elinks:mouse - Make elinks to grab all mouse events
 www-client/elinks:tre - Enable support for regex searches via dev-libs/tre
 www-client/elinks:xml - Enable support for bookmarks via dev-libs/expat
