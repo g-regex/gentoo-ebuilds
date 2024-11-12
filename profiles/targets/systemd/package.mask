@@ -1,9 +1,8 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-# Pacho Ramos <pacho@gentoo.org> (2015-04-21)
-# This is for running sys-apps/systemd and also helps
-# portage to not try to pull in other providers leading to
-# strange blockers.
-sys-fs/eudev
-sys-fs/udev
+# Sam James <sam@gentoo.org> (2024-11-10)
+# Breaks suspend on elogind systems (bug #934314, bug #923614) but
+# works fine on systemd machines.
+# https://github.com/polkit-org/polkit/issues/451
+->=sys-auth/polkit-124

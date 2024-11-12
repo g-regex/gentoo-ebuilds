@@ -5,7 +5,7 @@ EAPI=8
 
 DISTUTILS_EXT=1
 DISTUTILS_USE_PEP517=setuptools
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{10..13} )
 
 CRATES="
 	ahash@0.8.11
@@ -142,15 +142,6 @@ QA_FLAGS_IGNORED="usr/lib.*/py.*/site-packages/rustworkx/rustworkx.*\\.so"
 
 EPYTEST_XDIST=1
 distutils_enable_tests pytest
-
-src_prepare() {
-	distutils-r1_src_prepare
-
-	# force unstable ABI to workaround stable ABI crash in py3.13
-	# https://github.com/PyO3/pyo3/issues/4311
-	sed -i -e 's:"abi3-py38",::' Cargo.toml || die
-	export UNSAFE_PYO3_SKIP_VERSION_CHECK=1
-}
 
 python_test() {
 	local -x PYTEST_DISABLE_PLUGIN_AUTOLOAD=1

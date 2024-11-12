@@ -3,6 +3,20 @@
 
 # New entries go on top.
 
+# Matt Jolly <kangie@gentoo.org> (2024-11-11)
+# ICU 76.1 is not compatible with Chromium. Bug #943216.
+# We'll mask it for a few weeks to use the bundled ICU
+# while Google fixes the issue.
+www-client/chromium system-icu
+
+# Joonas Niilola <juippis@gentoo.org> (2024-11-07)
+# Dependency for generating docs not packaged in Gentoo. #942992
+dev-util/repolite doc
+
+# Volkmar W. Pogatzki <gentoo@pogatzki.net> (2024-11-01)
+# No suitable versions of dev-libs/protobuf available.
+>=dev-java/protobuf-java-4.28.1 system-protoc
+
 # Sam James <sam@gentoo.org> (2024-10-29)
 # Currently needs patched dev-util/sysprof.
 dev-libs/elfutils stacktrace
@@ -38,10 +52,6 @@ dev-lang/gnat-gpl pgo lto
 # Patrick McLean <chutzpah@gentoo.org> (2024-09-23)
 # Only supported on x86/amd64 (bug #940014).
 net-misc/lldpd seccomp
-
-# Volkmar W. Pogatzki <gentoo@pogatzki.net> (2024-09-12)
-# No suitable version of dev-libs/protobuf available.
-=dev-java/protobuf-java-4.28.1 system-protoc
 
 # Sam James <sam@gentoo.org> (2024-09-07)
 # yacc[reference] exists more for curiosity than anything else, it's
@@ -340,10 +350,6 @@ net-libs/gssdp man
 # Sam James <sam@gentoo.org> (2022-11-19)
 # Needs long-EOL dev-lang/spidermonkey:60 (which also needs python:2.7).
 media-libs/coin javascript
-
-# Michał Górny <mgorny@gentoo.org> (2022-11-19)
-# Requires packages masked for removal.
-mail-mta/netqmail authcram
 
 # Matt Turner <mattst88@gentoo.org> (2022-11-16)
 # gnome-music and gnome-photos have not been ported to libsoup:3.0, while
