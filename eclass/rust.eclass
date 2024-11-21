@@ -13,8 +13,10 @@
 # a given Rust slot. To use the eclass:
 #
 # 1. If required, set RUST_{MAX,MIN}_SLOT to the range of supported slots.
+#
 # 2. If rust is optional, set RUST_OPTIONAL to a non-empty value then
-#     appropriately gate ${RUST_DEPEND}
+#    appropriately gate ${RUST_DEPEND}
+#
 # 3. Use rust_pkg_setup, get_rust_prefix or RUST_SLOT.
 
 # Example use for a package supporting Rust 1.72.0 to 1.82.0:
@@ -106,7 +108,7 @@ declare -a -g -r _RUST_SLOTS_ORDERED=(
 # Lowest Rust slot supported by the package. Needs to be set before
 # rust_pkg_setup is called. If unset, no lower bound is assumed.
 
-# @eclass-variable: RUST_NEEDS_LLVM
+# @ECLASS_VARIABLE: RUST_NEEDS_LLVM
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # If set to a non-empty value generate a llvm_slot_${llvm_slot}? gated
@@ -118,7 +120,7 @@ declare -a -g -r _RUST_SLOTS_ORDERED=(
 # an invalid combination of RUST and LLVM slots is detected; this probably
 # means that a LLVM slot in LLVM_COMPAT has had all of its Rust slots filtered.
 
-# @eclass-variable: RUST_MULTILIB
+# @ECLASS_VARIABLE: RUST_MULTILIB
 # @DEFAULT_UNSET
 # @DESCRIPTION:
 # If set to a non-empty value insert MULTILIB_USEDEP into the generated
@@ -259,10 +261,10 @@ unset -f _rust_set_globals
 # and print its version number (i.e. SLOT) and type (source or bin[ary]).
 #
 # If -b is specified, the checks are performed relative to BROOT,
-# and BROOT-path is returned.
+# and BROOT-path is returned. -b is the default.
 #
 # If -d is specified, the checks are performed relative to ESYSROOT,
-# and ESYSROOT-path is returned. -d is the default.
+# and ESYSROOT-path is returned.
 #
 # If RUST_M{AX,IN}_SLOT is non-zero, then only Rust versions that
 # are not newer or older than the specified slot(s) will be considered.
@@ -278,7 +280,7 @@ unset -f _rust_set_globals
 _get_rust_slot() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	local hv_switch=-d
+	local hv_switch=-b
 	while [[ ${1} == -* ]]; do
 		case ${1} in
 			-b|-d) hv_switch="${1}";;
@@ -412,7 +414,7 @@ get_rust_prefix() {
 	[[ ${1} == -d ]] && prefix=${ESYSROOT}
 
 	local slot rust_type
-	read -r slot rust_type <<< $(_get_rust_slot)
+	read -r slot rust_type <<< $(_get_rust_slot "$@")
 	get_rust_path "${prefix}" "${slot}" "${rust_type}"
 }
 
@@ -451,9 +453,9 @@ rust_pkg_setup() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	if [[ ${MERGE_TYPE} != binary ]]; then
-		read -r RUST_SLOT RUST_TYPE <<< $(_get_rust_slot)
+		read -r RUST_SLOT RUST_TYPE <<< $(_get_rust_slot -b)
 		rust_prepend_path "${RUST_SLOT}" "${RUST_TYPE}"
-		local prefix=$(get_rust_prefix)
+		local prefix=$(get_rust_path "${BROOT}" "${RUST_SLOT}" "${RUST_TYPE}")
 		CARGO="${prefix}bin/cargo"
 		RUSTC="${prefix}bin/rustc"
 		export CARGO RUSTC
