@@ -1,9 +1,9 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-inherit bash-completion-r1 prefix rust-toolchain toolchain-funcs verify-sig multilib-minimal
+inherit prefix rust-toolchain toolchain-funcs verify-sig multilib multilib-minimal
 
 MY_P="rust-${PV}"
 
@@ -12,11 +12,10 @@ HOMEPAGE="https://www.rust-lang.org/"
 SRC_URI="$(rust_all_arch_uris ${MY_P})"
 
 LICENSE="|| ( MIT Apache-2.0 ) BSD-1 BSD-2 BSD-4 UoI-NCSA"
-SLOT="stable"
+SLOT="${PV}"
 KEYWORDS="~amd64 ~arm ~arm64 ~ppc ~ppc64 ~riscv ~x86"
-IUSE="clippy cpu_flags_x86_sse2 doc prefix rls rustfmt"
+IUSE="big-endian clippy cpu_flags_x86_sse2 doc prefix rustfmt"
 
-DEPEND=""
 RDEPEND=">=app-eselect/eselect-rust-20190311"
 BDEPEND="
 	prefix? ( dev-util/patchelf )
@@ -38,7 +37,7 @@ QA_PREBUILT="
 # so we can safely silence the warning for this QA check.
 QA_EXECSTACK="opt/${P}/lib/rustlib/*/lib*.rlib:lib.rmeta"
 
-VERIFY_SIG_OPENPGP_KEY_PATH=${BROOT}/usr/share/openpgp-keys/rust.asc
+VERIFY_SIG_OPENPGP_KEY_PATH=/usr/share/openpgp-keys/rust.asc
 
 pkg_pretend() {
 	if [[ "$(tc-is-softfloat)" != "no" ]] && [[ ${CHOST} == armv7* ]]; then
@@ -69,10 +68,9 @@ multilib_src_install() {
 	local analysis std
 	analysis="$(grep 'analysis' ./components)"
 	std="$(grep 'std' ./components)"
-	local components="rustc,cargo,${std}"
+	local components="rustc,cargo,${std},rls-preview,${analysis}"
 	use doc && components="${components},rust-docs"
 	use clippy && components="${components},clippy-preview"
-	use rls && components="${components},rls-preview,${analysis}"
 	use rustfmt && components="${components},rustfmt-preview"
 	./install.sh \
 		--components="${components}" \
@@ -83,7 +81,7 @@ multilib_src_install() {
 		|| die
 
 	if use prefix; then
-		local interpreter=$(patchelf --print-interpreter ${EPREFIX}/bin/bash)
+		local interpreter=$(patchelf --print-interpreter "${EPREFIX}/bin/bash")
 		ebegin "Changing interpreter to ${interpreter} for Gentoo prefix at ${ED}/opt/${P}/bin"
 		find "${ED}/opt/${P}/bin" -type f -print0 | \
 			while IFS=  read -r -d '' filename; do
@@ -94,15 +92,15 @@ multilib_src_install() {
 
 	local symlinks=(
 		cargo
-		rustc
-		rustdoc
+		rls
 		rust-gdb
 		rust-gdbgui
 		rust-lldb
+		rustc
+		rustdoc
 	)
 
 	use clippy && symlinks+=( clippy-driver cargo-clippy )
-	use rls && symlinks+=( rls )
 	use rustfmt && symlinks+=( rustfmt cargo-fmt )
 
 	einfo "installing eselect-rust symlinks and paths"
@@ -141,14 +139,12 @@ multilib_src_install() {
 	/usr/lib/rust/lib
 	/usr/lib/rust/man
 	/usr/share/doc/rust
+	/usr/bin/rls
 	_EOF_
 
 	if use clippy; then
 		echo /usr/bin/clippy-driver >> "${T}/provider-${P}"
 		echo /usr/bin/cargo-clippy >> "${T}/provider-${P}"
-	fi
-	if use rls; then
-		echo /usr/bin/rls >> "${T}/provider-${P}"
 	fi
 	if use rustfmt; then
 		echo /usr/bin/rustfmt >> "${T}/provider-${P}"
