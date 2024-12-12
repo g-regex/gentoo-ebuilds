@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{9..12} )
 inherit python-single-r1 cmake flag-o-matic
 
 DESCRIPTION="Open source multimedia framework for television broadcasting"
@@ -12,7 +12,7 @@ SRC_URI="https://github.com/mltframework/${PN}/releases/download/v${PV}/${P}.tar
 
 LICENSE="GPL-3"
 SLOT="0/7"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="amd64 arm64 ~ppc64 ~riscv x86 ~amd64-linux ~x86-linux"
 IUSE="debug ffmpeg frei0r gtk jack libsamplerate opencv opengl python qt5 qt6 rtaudio rubberband sdl test vdpau vidstab xine xml"
 
 REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
@@ -65,7 +65,7 @@ DEPEND="
 		>=media-libs/rtaudio-4.1.2
 		kernel_linux? ( media-libs/alsa-lib )
 	)
-	rubberband? ( media-libs/rubberband )
+	rubberband? ( media-libs/rubberband:= )
 	sdl? (
 		media-libs/libsdl2[X,opengl,video]
 		media-libs/sdl2-image
@@ -93,7 +93,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-6.10.0-swig-underlinking.patch
 	"${FILESDIR}"/${PN}-6.22.1-no_lua_bdepend.patch
 	"${FILESDIR}"/${PN}-7.0.1-cmake-symlink.patch
-	"${FILESDIR}"/${PN}-7.24.0-musl-build-fix.patch
 )
 
 pkg_setup() {
